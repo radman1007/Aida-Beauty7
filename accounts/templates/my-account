@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}پروفایل{% endblock title %}
+{% block _body_ %}
+<main class="main-content">
+
+    <!--== Start Page Header Area Wrapper ==-->
+    <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="page-header-st3-content text-center text-md-start">
+                        <br><br>
+                        <ol class="breadcrumb justify-content-center justify-content-md-start">
+                            <li class="breadcrumb-item"><a class="text-dark" href="{% url "index" %}">صفحه اصلی</a></li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">حساب کاربری</li>
+                        </ol>
+                        <h2 class="page-header-title">حساب کاربری</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Page Header Area Wrapper ==-->
+
+    <!--== Start My Account Area Wrapper ==-->
+    <section class="my-account-area section-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="my-account-tab-menu nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="dashboad-tab" data-bs-toggle="tab" data-bs-target="#dashboad" type="button" role="tab" aria-controls="dashboad" aria-selected="true">داشبورد</button>
+                        <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false"> سفارشات</button>
+                        <button class="nav-link" id="download-tab" data-bs-toggle="tab" data-bs-target="#download" type="button" role="tab" aria-controls="download" aria-selected="false">دانلود</button>
+                        <button class="nav-link" id="payment-method-tab" data-bs-toggle="tab" data-bs-target="#payment-method" type="button" role="tab" aria-controls="payment-method" aria-selected="false">روش پرداخت</button>
+                        <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">نشانی</button>
+                        <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">جزئیات حساب</button>
+                        <button class="nav-link" onclick="" type="button"><form action="{% url "logout" %}" method="post">{% csrf_token %}خروج</form></button>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel" aria-labelledby="dashboad-tab">
+                            <div class="myaccount-content">
+                                <h3>داشبورد</h3>
+                                <div class="welcome">
+                                    <p>سلام, <strong>جلیل سرور</strong> (اگر نه <strong>تونتونی!</strong><a href="{% url "login-register" %}" class="logout"> خروج</a>)</p>
+                                </div>
+                                <p>از داشبورد حساب شما. شما می توانید به راحتی سفارشات اخیر خود را بررسی و مشاهده کنید، آدرس های حمل و نقل و صورتحساب خود را مدیریت کنید و رمز عبور و جزئیات حساب خود را ویرایش کنید.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                            <div class="myaccount-content">
+                                <h3>سفارشات</h3>
+                                <div class="myaccount-table table-responsive text-center">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th>سفارشات</th>
+                                            <th>تاریخ</th>
+                                            <th>وضعیت</th>
+                                            <th>جمع</th>
+                                            <th>عمل</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1402 - 08 - 17</td>
+                                            <td>انتظار</td>
+                                            <td>3000 تومان</td>
+                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>1402 - 08 - 17</td>
+                                            <td>انتظار</td>
+                                            <td>3200 تومان</td>
+                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>1402 - 08 - 17</td>
+                                            <td>انتظار</td>
+                                            <td>9900 تومان</td>
+                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="download" role="tabpanel" aria-labelledby="download-tab">
+                            <div class="myaccount-content">
+                                <h3>دانلودها</h3>
+                                <div class="myaccount-table table-responsive text-center">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th>محصول</th>
+                                            <th>تاریخ</th>
+                                            <th>انقضا</th>
+                                            <th>دانلود</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td> - قالب  املاک و مستغلات رایگان</td>
+                                            <td>1402 - 08 - 17</td>
+                                            <td>بله</td>
+                                            <td><a href="#/" class="check-btn sqr-btn"><i class="fa fa-cloud-download"></i> دانلود فایل</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td> - قالب  املاک و مستغلات رایگان</td>
+                                            <td>1402 - 08 - 17</td>
+                                            <td>بله</td>
+                                            <td><a href="#/" class="check-btn sqr-btn"><i class="fa fa-cloud-download"></i> دانلود فایل</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="payment-method" role="tabpanel" aria-labelledby="payment-method-tab">
+                            <div class="myaccount-content">
+                                <h3>روش پرداخت</h3>
+                                <p class="saved-message">هنوز نمی توانید روش پرداخت خود را ذخیره کنید.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="address-edit" role="tabpanel" aria-labelledby="address-edit-tab">
+                            <div class="myaccount-content">
+                                <h3>آدرس قبض</h3>
+                                <address>
+                                    <p><strong>الکس توتونی</strong></p>
+                                    <p>خیابان بازار 1355، سوئیت  <br>
+                                        خیابان ولیعصر</p>
+                                    <p>تلفن همراه: (123) 456-7890</p>
+                                </address>
+                                <a href="#/" class="check-btn sqr-btn"><i class="fa fa-edit"></i>  ویرایش آدرس</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-info" role="tabpanel" aria-labelledby="account-info-tab">
+                            <div class="myaccount-content">
+                                <h3>جزئیات حساب</h3>
+                                <div class="account-details-form">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="single-input-item">
+                                                    <label for="first-name" class="required">نام کوچک</label>
+                                                    <input type="text" id="first-name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="single-input-item">
+                                                    <label for="last-name" class="required">نام خانوادگی</label>
+                                                    <input type="text" id="last-name" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-input-item">
+                                            <label for="display-name" class="required">نام نمایشی</label>
+                                            <input type="text" id="display-name" />
+                                        </div>
+                                        <div class="single-input-item">
+                                            <label for="email" class="required">آدرس ایمیل</label>
+                                            <input type="email" id="email" />
+                                        </div>
+                                        <fieldset>
+                                            <legend>تغییر رمز عبور</legend>
+                                            <div class="single-input-item">
+                                                <label for="current-pwd" class="required">رمز عبور فعلی</label>
+                                                <input type="password" id="current-pwd" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="single-input-item">
+                                                        <label for="new-pwd" class="required">رمز عبور جدید</label>
+                                                        <input type="password" id="new-pwd" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="single-input-item">
+                                                        <label for="confirm-pwd" class="required">رمز عبور را تایید کنید</label>
+                                                        <input type="password" id="confirm-pwd" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="single-input-item">
+                                            <button class="check-btn sqr-btn">ذخیره تغییرات</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End My Account Area Wrapper ==-->
+
+</main>
+{% endblock _body_ %}
