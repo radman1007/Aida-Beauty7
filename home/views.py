@@ -8,3 +8,6 @@ def about(request):
 
 def compare(request):
     return render(request, "compare.html")
+
+def faq(request):
+    return render(request, "faq.html")
