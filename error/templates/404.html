@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}۴۰۴{% endblock title %}
+{% block _body_ %}
+<main class="main-content">
+    <!--== Start Faq Area Wrapper ==-->
+    <section class="page-not-found-area">
+        <div class="container">
+            <div class="page-not-found">
+                <img src="{% static "files/images/photos/page-not-found.webp" %}" width="975" height="538" alt="Image">
+                <h3 class="title">اوپس! تو باختی</h3>
+                <h5 class="back-btn">رفتن به <a href="{% url "home" %}">صفحه اصلی</a> صفحه</h5>
+            </div>
+        </div>
+    </section>
+    <!--== End Faq Area Wrapper ==-->
+</main>
+{% endblock _body_ %}
