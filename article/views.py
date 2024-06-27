@@ -5,3 +5,6 @@ def blog(request):
 
 def blog_filter(request):
     return render(request, "blog-filter.html")
+
+def blog_detail(request):
+    return render(request, "blog-detail.html")
