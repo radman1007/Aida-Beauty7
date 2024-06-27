@@ -5,3 +5,6 @@ def product(request):
 
 def product_detail(request):
     return render(request, "product-detail.html")
+
+def product_filter(request):
+    return render(request, "product-filter.html")
