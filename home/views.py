@@ -24,7 +24,6 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')  
     form = ContactForm()
     context = {
         'form' : form
