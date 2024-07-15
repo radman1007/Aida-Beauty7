@@ -5,3 +5,6 @@ class Blog(models.Model):
     author = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
+    
+    def __str__(self):
+        return self.title
