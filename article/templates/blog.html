@@ -167,7 +167,7 @@
                     {% for form in forms %}
                     <div class="post-item">
                         <a href="{{ form.get_absolute_url }}" class="thumb">
-                            <img src="{% static "files/images/blog/1.webp" %}" width="370" height="320" alt="Image-HasTech">
+                            <img src="{{ blog.image.url }}" width="370" height="320" alt="Image-HasTech">
                         </a>
                         <div class="content">
 
