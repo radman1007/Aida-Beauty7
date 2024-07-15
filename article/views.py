@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog, Category
+from .models import Blog, Category, StaticBlog
 
 def blog(request):
+    statics = StaticBlog.objects.filter(accept=True)
     forms = Blog.objects.all()
     context = {
+        'statics' : statics,
         'forms' : forms,
     }
     return render(request, "blog.html", context)
