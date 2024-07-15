@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
 def product(request):
-    return render(request, "product.html")
+    posts = Product.objects.all()
+    context = {
+        'posts' : posts
+    }
+    return render(request, "product.html", context)
 
 def product_detail(request):
     return render(request, "product-detail.html")
