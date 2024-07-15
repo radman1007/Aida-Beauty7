@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from article.models import Blog
 
 def index(request):
-    return render(request, "index.html")
+    forms = Blog.objects.all()
+    context = {
+        'forms' : forms
+    }
+    return render(request, "index.html", context)
 
 def about(request):
     return render(request, "about.html")
