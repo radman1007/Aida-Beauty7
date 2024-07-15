@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from article.models import Blog
 from product.models import Product
+from .forms import ContactForm
 
 def index(request):
     forms = Blog.objects.all()
@@ -19,4 +20,13 @@ def faq(request):
     return render(request, "faq.html")
 
 def contact(request):
-    return render(request, "contact.html")
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  
+    form = ContactForm()
+    context = {
+        'form' : form
+    }
+    return render(request, "contact.html", context)
