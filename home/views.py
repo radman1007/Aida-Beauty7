@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from article.models import Blog
+from product.models import Product
 
 def index(request):
+    posts = Product.objects.all()
     forms = Blog.objects.all()
     context = {
-        'forms' : forms
+        'posts' : posts,
+        'forms' : forms,
     }
     return render(request, "index.html", context)
 
