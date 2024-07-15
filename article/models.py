@@ -9,6 +9,7 @@ class Category(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=250)
+    image = models.ImageField(null=True,blank=True)
     author = models.CharField(max_length=250)
     body = models.TextField()
     category = models.ManyToManyField(Category)
