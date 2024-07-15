@@ -17,4 +17,7 @@ def blog_filter(request):
 
 def blog_detail(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
-    return render(request, "blog-detail.html")
+    context = {
+        'blog' : blog
+    }
+    return render(request, "blog-detail.html", context)

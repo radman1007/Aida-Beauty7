@@ -19,10 +19,9 @@
     <section class="section-space pb-0">
         <div class="container">
             <div class="blog-detail">
-                <h3 class="blog-detail-title">ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </h3>
+                <h3 class="blog-detail-title">{{ blog.title }}</h3>
                 <div class="blog-detail-category">
-                    <a class="category" href="{% url "blog" %}">زیبایی</a>
-                    <a class="category" data-bg-color="#957AFF" href="{% url "blog" %}">روش</a>
+                    <a class="category" data-bg-color="#957AFF" href="">{{ blog.category.title }}</a>
                 </div>
                 <img class="blog-detail-img mb-7 mb-lg-10" src="{% static "files/images/blog/blog-detail1.webp" %}" width="1170" height="1012" alt="Image">
                 <div class="row justify-content-center">
