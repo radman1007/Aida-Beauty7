@@ -33,7 +33,7 @@
                                         <h4 class="title"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
                                         <ul class="meta">
                                             <li class="author-info"><span>توسط:</span> <a href="{% url "blog" %}">{{ form.author }}</a></li>
-                                            <li class="post-date">{{ form.created|date:'Y / m / d' }}</li>
+                                            <li class="post-date">{{ form.created|date:'Y/m/d' }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -50,52 +50,12 @@
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                        <div class="blog-widget">
-                            <h4 class="blog-widget-title">دسته بندی های محبوب</h4>
-                            <ul class="blog-widget-category">
-                                <li><a href="{% url "blog" %}">تجهیزات جانبی <span>(6)</span></a></li>
-                                <li><a href="{% url "blog" %}">کامپیوتر <span>(4)</span></a></li>
-                                <li><a href="{% url "blog" %}">کووید 19<span>(2)</span></a></li>
-                                <li><a href="{% url "blog" %}">الکترونیک <span>(12)</span></a></li>
-                                <li><a href="{% url "blog" %}">مبلمان <span>(9)</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="blog-widget">
-                            <h4 class="blog-widget-title">پستهای اخیر</h4>
-                            <div class="blog-widget-post">
-                                <div class="blog-widget-single-post">
-                                    <a href="{{ form.get_absolute_url }}">
-                                        <img src="{% static "files/images/blog/s1.webp" %}" width="75" height="78" alt="Images">
-                                        <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
-                                    </a>
-                                    <span class="date">آبان ، 08 1402</span>
-                                </div>
-                                <div class="blog-widget-single-post">
-                                    <a href="{{ form.get_absolute_url }}">
-                                        <img src="{% static "files/images/blog/s2.webp" %}" width="75" height="78" alt="Images">
-                                        <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
-                                    </a>
-                                    <span class="date">آبان ، 08 1402</span>
-                                </div>
-                                <div class="blog-widget-single-post">
-                                    <a href="{{ form.get_absolute_url }}">
-                                        <img src="{% static "files/images/blog/s3.webp" %}" width="75" height="78" alt="Images">
-                                        <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
-                                    </a>
-                                    <span class="date">آبان ، 08 1402</span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="blog-widget mb-0">
                             <h4 class="blog-widget-title">برچسب های محبوب</h4>
                             <ul class="blog-widget-tags">
-                                <li><a href="{% url "blog" %}">زیبایی</a></li>
-                                <li><a href="{% url "blog" %}">آرایشگر</a></li>
-                                <li><a href="{% url "blog" %}">آرایش</a></li>
-                                <li><a href="{% url "blog" %}">مو</a></li>
-                                <li><a href="{% url "blog" %}">ناخن</a></li>
-                                <li><a href="{% url "blog" %}">مدل مو</a></li>
-                                <li><a href="{% url "blog" %}">مراقبت از پوست</a></li>
+                                {% for categorie in categories %}
+                                    <li><a href="{% url "blog" %}">{{ categorie.title }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

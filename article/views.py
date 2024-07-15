@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog
+from .models import Blog, Category
 
 def blog(request):
     forms = Blog.objects.all()
@@ -9,9 +9,11 @@ def blog(request):
     return render(request, "blog.html", context)
 
 def blog_filter(request):
+    categories = Category.objects.all()
     forms = Blog.objects.all()
     context = {
         'forms' : forms,
+        'categories' : categories
     }
     return render(request, "blog-filter.html", context)
 
