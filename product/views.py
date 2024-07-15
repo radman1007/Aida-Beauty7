@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product
 
 def product(request):
     posts = Product.objects.all()
