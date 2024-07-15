@@ -86,7 +86,7 @@
 
             <div class="row justify-content-between align-items-center pt-10 mt-4 section-space">
                 <div class="col-sm-6">
-                    <a href="{% url "blog_detail" %}" class="blog-next-previous">
+                    <a href="{{ form.get_absolute_url }}" class="blog-next-previous">
                         <div class="thumb">
                             <span class="arrow">قبلی</span>
                             <img src="{% static "files/images/blog/next-previous1.webp" %}" width="93" height="80" alt="Image">
@@ -98,7 +98,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6">
-                    <a href="{% url "blog_detail" %}" class="blog-next-previous blog-next">
+                    <a href="{{ form.get_absolute_url }}" class="blog-next-previous blog-next">
                         <div class="thumb">
                             <span class="arrow">بعد</span>
                             <img src="{% static "files/images/blog/next-previous2.webp" %}" width="93" height="80" alt="Image">
@@ -155,12 +155,12 @@
                 <div class="col-sm-6 col-lg-4 mb-8">
                     <!--== Start Blog Item ==-->
                     <div class="post-item">
-                        <a href="{% url "blog_detail" %}" class="thumb">
+                        <a href="{{ form.get_absolute_url }}" class="thumb">
                             <img src="{% static "files/images/blog/1.webp" %}" width="370" height="320" alt="Image-HasTech">
                         </a>
                         <div class="content">
                             <a class="post-category" href="{% url "blog" %}">زیبایی</a>
-                            <h4 class="title"><a href="{% url "blog_detail" %}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
+                            <h4 class="title"><a href="{{ form.get_absolute_url }}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
                             <ul class="meta">
                                 <li class="author-info"><span>توسط:</span> <a href="{% url "blog" %}">توماس دی مومن</a></li>
                                 <li class="post-date">آبان ، 08 1402</li>
@@ -172,12 +172,12 @@
                 <div class="col-sm-6 col-lg-4 mb-8">
                     <!--== Start Blog Item ==-->
                     <div class="post-item">
-                        <a href="{% url "blog_detail" %}" class="thumb">
+                        <a href="{{ form.get_absolute_url }}" class="thumb">
                             <img src="{% static "files/images/blog/2.webp" %}" width="370" height="320" alt="Image-HasTech">
                         </a>
                         <div class="content">
                             <a class="post-category post-category-two" data-bg-color="#A49CFF" href="{% url "blog" %}">زیبایی</a>
-                            <h4 class="title"><a href="{% url "blog_detail" %}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
+                            <h4 class="title"><a href="{{ form.get_absolute_url }}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
                             <ul class="meta">
                                 <li class="author-info"><span>توسط:</span> <a href="{% url "blog" %}">توماس دی مومن</a></li>
                                 <li class="post-date">آبان ، 08 1402</li>
@@ -189,12 +189,12 @@
                 <div class="col-sm-6 col-lg-4 mb-8">
                     <!--== Start Blog Item ==-->
                     <div class="post-item">
-                        <a href="{% url "blog_detail" %}" class="thumb">
+                        <a href="{{ form.get_absolute_url }}" class="thumb">
                             <img src="{% static "files/images/blog/3.webp" %}" width="370" height="320" alt="Image-HasTech">
                         </a>
                         <div class="content">
                             <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="{% url "blog" %}">زیبایی</a>
-                            <h4 class="title"><a href="{% url "blog_detail" %}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
+                            <h4 class="title"><a href="{{ form.get_absolute_url }}">مزایای هات استون اسپا برای سلامتی و زندگی شما.</a></h4>
                             <ul class="meta">
                                 <li class="author-info"><span>توسط:</span> <a href="{% url "blog" %}">توماس دی مومن</a></li>
                                 <li class="post-date">آبان ، 08 1402</li>

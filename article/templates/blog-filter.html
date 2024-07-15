@@ -24,12 +24,12 @@
                             <!--== Start Blog Item ==-->
                             {% for form in forms %}
                                 <div class="post-item">
-                                    <a href="{% url "blog_detail" %}" class="thumb">
+                                    <a href="{{ form.get_absolute_url }}" class="thumb">
                                         <img src="{% static "files/images/blog/1.webp" %}" width="370" height="320" alt="Image-HasTech">
                                     </a>
                                     <div class="content">
                                         <a class="post-category" href="{% url "blog" %}">{{ form.category.title }}</a>
-                                        <h4 class="title"><a href="{% url "blog_detail" %}">{{ form.title }}</a></h4>
+                                        <h4 class="title"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
                                         <ul class="meta">
                                             <li class="author-info"><span>توسط:</span> <a href="{% url "blog" %}">{{ form.author }}</a></li>
                                             <li class="post-date">{{ form.created|date:'Y / m / d' }}</li>
@@ -63,21 +63,21 @@
                             <h4 class="blog-widget-title">پستهای اخیر</h4>
                             <div class="blog-widget-post">
                                 <div class="blog-widget-single-post">
-                                    <a href="{% url "blog_detail" %}">
+                                    <a href="{{ form.get_absolute_url }}">
                                         <img src="{% static "files/images/blog/s1.webp" %}" width="75" height="78" alt="Images">
                                         <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
                                     </a>
                                     <span class="date">آبان ، 08 1402</span>
                                 </div>
                                 <div class="blog-widget-single-post">
-                                    <a href="{% url "blog_detail" %}">
+                                    <a href="{{ form.get_absolute_url }}">
                                         <img src="{% static "files/images/blog/s2.webp" %}" width="75" height="78" alt="Images">
                                         <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
                                     </a>
                                     <span class="date">آبان ، 08 1402</span>
                                 </div>
                                 <div class="blog-widget-single-post">
-                                    <a href="{% url "blog_detail" %}">
+                                    <a href="{{ form.get_absolute_url }}">
                                         <img src="{% static "files/images/blog/s3.webp" %}" width="75" height="78" alt="Images">
                                         <span class="title">مزایای هات استون اسپا برای سلامتی و زندگی شما.</span>
                                     </a>

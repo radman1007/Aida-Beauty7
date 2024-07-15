@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Blog
 
 def blog(request):
@@ -16,5 +16,5 @@ def blog_filter(request):
     return render(request, "blog-filter.html", context)
 
 def blog_detail(request, pk):
-    
+    blog = get_object_or_404(Blog, pk=pk)
     return render(request, "blog-detail.html")
