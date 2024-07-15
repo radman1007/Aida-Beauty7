@@ -21,7 +21,7 @@
                     <div class="page-header-content page-header-st2-content">
                         <div class="title-img"><img src="{% static "files/images/photos/page-header-text1.webp" %}" alt="Image"></div>
                         <h2 class="page-header-title">راز زیبایی چیست؟</h2>
-                        <p class="page-header-desc">ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </p>
+                        <p class="page-header-desc">آشنایی با ما بزرگترین رازی است که تمام کسانی که مارو دنبال میکنند بهش پی بردند.</p>
                     </div>
                 </div>
             </div>
@@ -119,10 +119,10 @@
                             </a>
                             <div class="content">
                                 <h4 class="title mt-0"><a href="">{{ static.title }}</a></h4>
-                                <p class="desc">{{ static.body }}</p>
+                                <p class="desc">{{ static.body|linebreaks }}</p>
                                 <ul class="meta">
                                     <li class="author-info"><span>توسط:</span>{{ static.author }}</li>
-                                    <li class="post-date">{{ static.created }}</li>
+                                    <li class="post-date">{{ static.created|date:'Y/m/d' }}</li>
                                 </ul>
                             </div>
                         </div>
