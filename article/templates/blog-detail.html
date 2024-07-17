@@ -21,7 +21,9 @@
             <div class="blog-detail">
                 <h3 class="blog-detail-title">{{ blog.title }}</h3>
                 <div class="blog-detail-category">
-                    <a class="category" data-bg-color="#957AFF" href="">{{ blog.category.title }}</a>
+                    {% for category in blog.category.all %}
+                        <a class="category" data-bg-color="#957AFF" href="">{{ category.title }}</a>
+                    {% endfor %}
                 </div>
                 <img class="blog-detail-img mb-7 mb-lg-10" src="{{ blog.image.url }}" width="1170" height="1012" alt="Image">
                 <div class="row justify-content-center">
