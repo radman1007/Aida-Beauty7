@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 from article.models import Category
 
@@ -10,7 +10,11 @@ def product(request):
     return render(request, "product.html", context)
 
 def product_detail(request, pk):
-    return render(request, "product-detail.html")
+    post = get_object_or_404(Product, pk=pk)
+    context = {
+        'post' : post
+    }
+    return render(request, "product-detail.html", context)
 
 def product_filter(request):
     categories = Category.objects.all()
