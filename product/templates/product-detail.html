@@ -30,7 +30,7 @@
             <div class="row product-details">
                 <div class="col-lg-6">
                     <div class="product-details-thumb">
-                        <img src="{% static "files/images/shop/product-details/1.webp" %}" width="570" height="693" alt="Image">
+                        <img src="{{ post.image.url }}" width="570" height="693" alt="Image">
                         <span class="flag-new">جدید</span>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             <div class="product-review-item">
                                 <div class="product-review-top">
                                     <div class="product-review-thumb">
-                                        <img src="{{ post.image.url }}" alt="Images">
+                                        <img src="{% static "files/images/shop/product-details/comment1.webp" %}" alt="Images">
                                     </div>
                                     <div class="product-review-content">
                                         <span class="product-review-name">توماس دو</span>
