@@ -37,7 +37,7 @@
                 <div class="col-lg-6">
                     <div class="product-details-content">
                         <h5 class="product-details-collection">مجموعه ممتاز</h5>
-                        <h3 class="product-details-title">ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی</h3>
+                        <h3 class="product-details-title">{{ post.title }}</h3>
                         <div class="product-details-review">
                             <div class="product-review-icon">
                                 <i class="fa fa-star-o"></i>
@@ -64,12 +64,12 @@
                                 <input type="text" title="Quantity" value="01">
                             </div>
                         </div>
-                        <div class="product-details-shipping-cost">
+                        {% comment %} <div class="product-details-shipping-cost">
                             <input class="form-check-input" type="checkbox" value="" id="ShippingCost" checked>
                             <label class="form-check-label" for="ShippingCost">حمل و نقل از ایالات متحده آمریکا، هزینه حمل و نقل 4.22 تومان</label>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="product-details-action">
-                            <h4 class="price">254.00 تومان</h4>
+                            <h4 class="price">{{ post.price }} تومان</h4>
                             <div class="product-details-cart-wishlist">
                                 <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
                                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>
@@ -88,20 +88,14 @@
                         <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
                             <ul class="product-details-info-wrap">
                                 <li><span>وزن</span>
-                                    <p>250 گرم</p>
-                                </li>
-                                <li><span>Dimensions</span>
-                                    <p>10 x 10 x 15 سانتیمتر</p>
+                                    <p>{{ post.weight }} گرم</p>
                                 </li>
                                 <li><span>مواد</span>
-                                    <p>60% پنبه، 40% پلی استر</p>
-                                </li>
-                                <li><span>سایر اطلاعات</span>
-                                    <p>موروثی شورت جین پاگ سیتان لترپرس</p>
+                                    <p>{{ post.mater }}</p>
                                 </li>
                             </ul>
 
-                            <p> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند</p>
+                            <p>{{ post.body }}</p>
                         </div>
 
                         <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -109,7 +103,7 @@
                             <div class="product-review-item">
                                 <div class="product-review-top">
                                     <div class="product-review-thumb">
-                                        <img src="{% static "files/images/shop/product-details/comment1.webp" %}" alt="Images">
+                                        <img src="{{ post.image.url }}" alt="Images">
                                     </div>
                                     <div class="product-review-content">
                                         <span class="product-review-name">توماس دو</span>
