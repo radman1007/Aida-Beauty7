@@ -1,7 +1,51 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .cart import Cart
+from django.contrib import messages
+from product.models import Product
+from .forms import AddToCartProductForm
+from django.views.decorators.http import require_POST
 
 def cart(request):
-    return render(request, "cart.html")
+    cart = Cart(request)
+    for item in cart:
+        item['product_update_quantity_form'] = AddToCartProductForm(
+            initial={
+                'quantity' : item['quantity'],
+                'inplace' : True,
+            }
+        )
+    context = {
+        'cart' : cart,
+    }
+    return render(request, "cart.html", context)
 
 def checkout(request):
     return render(request, "checkout.html")
+
+@require_POST
+def cart_add(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, pk=product_id)
+    form = AddToCartProductForm(request.POST)
+    if form.is_valid():
+        cleaned_data = form.cleaned_data
+        quantity = cleaned_data['quantity']
+        cart.add(product, quantity, cleaned_data['inplace'])
+    return redirect('cart')
+
+def cart_clear(request):
+    cart = Cart(request)
+    if len(cart) == 0:
+        messages.warning(request, 'Your cart is empty')
+        return redirect('index')
+    cart.clear()
+    messages.success(request, '')
+    return redirect('index')
+
+@require_POST
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, pk=product_id)
+    cart.remove(product)
+    return redirect('cart')
+    
