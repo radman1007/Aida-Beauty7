@@ -35,7 +35,7 @@
                                 <!--== Start Product Item ==-->
                                 <div class="product-item product-st3-item">
                                     <div class="product-thumb">
-                                        <a class="d-block" href="{% url "product_detail" %}">
+                                        <a class="d-block" href="{{ post.get_absolute_url }}">
                                             <img src="{{ post.image.url }}" width="370" height="450" alt="Image-HasTech">
                                         </a>
                                         <span class="flag-new">جدید</span>
@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="reviews">150 بررسی</div>
                                         </div>
-                                        <h4 class="title"><a href="{% url "product_detail" %}">{{ post.title }}</a></h4>
+                                        <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                         <div class="prices">
                                             <span class="price">{{ post.price }} تومان</span>
                                         </div>
@@ -161,7 +161,7 @@
                                 <!--== Start Product Item ==-->
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a class="d-block" href="{% url "product_detail" %}">
+                                        <a class="d-block" href="{{ post.get_absolute_url }}">
                                             <img src="{% static "files/images/shop/3.webp" %}" width="370" height="450" alt="Image-HasTech">
                                         </a>
                                         <span class="flag-new">جدید</span>
@@ -188,7 +188,7 @@
                                             </div>
                                             <div class="reviews">150 بررسی</div>
                                         </div>
-                                        <h4 class="title"><a href="{% url "product_detail" %}">محتوای قابل خواندن </a></h4>
+                                        <h4 class="title"><a href="{{ post.get_absolute_url }}">محتوای قابل خواندن </a></h4>
                                         <div class="prices">
                                             <span class="price">21.00 تومان</span>
                                             <span class="price-old">300.00</span>
@@ -212,7 +212,7 @@
                                 <!--== Start Product Item ==-->
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a class="d-block" href="{% url "product_detail" %}">
+                                        <a class="d-block" href="{{ post.get_absolute_url }}">
                                             <img src="{% static "files/images/shop/8.webp" %}" width="370" height="450" alt="Image-HasTech">
                                         </a>
                                         <span class="flag-new">جدید</span>
@@ -239,7 +239,7 @@
                                             </div>
                                             <div class="reviews">150 بررسی</div>
                                         </div>
-                                        <h4 class="title"><a href="{% url "product_detail" %}">برس چشم مدرن</a></h4>
+                                        <h4 class="title"><a href="{{ post.get_absolute_url }}">برس چشم مدرن</a></h4>
                                         <div class="prices">
                                             <span class="price">21.00 تومان</span>
                                             <span class="price-old">300.00</span>
@@ -263,7 +263,7 @@
                                 <!--== Start Product Item ==-->
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a class="d-block" href="{% url "product_detail" %}">
+                                        <a class="d-block" href="{{ post.get_absolute_url }}">
                                             <img src="{% static "files/images/shop/7.webp" %}" width="370" height="450" alt="Image-HasTech">
                                         </a>
                                         <span class="flag-new">جدید</span>
@@ -290,7 +290,7 @@
                                             </div>
                                             <div class="reviews">150 بررسی</div>
                                         </div>
-                                        <h4 class="title"><a href="{% url "product_detail" %}">پاک کننده صورت و دست</a></h4>
+                                        <h4 class="title"><a href="{{ post.get_absolute_url }}">پاک کننده صورت و دست</a></h4>
                                         <div class="prices">
                                             <span class="price">21.00 تومان</span>
                                             <span class="price-old">300.00</span>

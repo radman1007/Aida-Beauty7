@@ -161,7 +161,7 @@
                         <!--== Start Product Item ==-->
                         <div class="product-item">
                             <div class="product-thumb">
-                                <a class="d-block" href="{{ item.product_obj.get_absolute_url }}">
+                                <a class="d-block" href="{{ post.get_absolute_url }}">
                                     <img src="{{ post.image.url }}" width="370" height="450" alt="Image-HasTech">
                                 </a>
                                 <span class="flag-new">جدید</span>
@@ -195,7 +195,7 @@
                                     </div>
                                     <div class="reviews">150 بررسی</div>
                                 </div>
-                                <h4 class="title"><a href="{{ item.product_obj.get_absolute_url }}">{{ post.title }}</a></h4>
+                                <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 <div class="prices">
                                     <span class="price">{{ post.price }} تومان</span>
                                 </div>

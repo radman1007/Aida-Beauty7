@@ -9,7 +9,7 @@ def product(request):
     }
     return render(request, "product.html", context)
 
-def product_detail(request):
+def product_detail(request, pk):
     return render(request, "product-detail.html")
 
 def product_filter(request):
