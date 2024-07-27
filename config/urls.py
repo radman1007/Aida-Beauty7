@@ -22,8 +22,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('products/', include('product.urls')),
     path('articles/', include('article.urls')),
     path('cart/', include('cart.urls')),

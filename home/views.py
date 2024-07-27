@@ -26,3 +26,6 @@ def contact(request):
         'form' : form
     }
     return render(request, "contact.html", context)
+
+def profile(request):
+    return render(request, 'my-account.html')

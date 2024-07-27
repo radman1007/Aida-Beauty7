@@ -35,7 +35,7 @@
                         <button class="nav-link" id="payment-method-tab" data-bs-toggle="tab" data-bs-target="#payment-method" type="button" role="tab" aria-controls="payment-method" aria-selected="false">روش پرداخت</button>
                         <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">نشانی</button>
                         <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">جزئیات حساب</button>
-                        <button class="nav-link" onclick="" type="button"><form action="{% url "logout" %}" method="post">{% csrf_token %}خروج</form></button>
+                        <button class="nav-link" onclick="" type="button"><form action="{% url "account_logout" %}" method="post">{% csrf_token %}خروج</form></button>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8">
