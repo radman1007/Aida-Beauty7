@@ -11,7 +11,7 @@ def product(request):
 
 def product_detail(request, pk):
     post = get_object_or_404(Product, pk=pk)
-    comments = post.comments.filter()
+    comments = post.comments.filter(publish=True)
     context = {
         'post' : post,
         'comments' : comments,

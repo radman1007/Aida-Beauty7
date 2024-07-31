@@ -110,74 +110,44 @@
                         </div>
 
                         <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            {% for comment in comments %}
                             <!--== Start Reviews Content Item ==-->
                             <div class="product-review-item">
                                 <div class="product-review-top">
-                                    <div class="product-review-thumb">
+                                    {% comment %} <div class="product-review-thumb">
                                         <img src="{% static "files/images/shop/product-details/comment1.webp" %}" alt="Images">
-                                    </div>
+                                    </div> {% endcomment %}
                                     <div class="product-review-content">
-                                        <span class="product-review-name">توماس دو</span>
-                                        <span class="product-review-designation">توسعه دهنده</span>
+                                        <span class="product-review-name">{{ comment.name }}</span>
                                         <div class="product-review-icon">
+                                            {% if comment.star == '1' %}
+                                            <i class="fa fa-star"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
+                                            {% endif %}
+                                            {% if comment.star == '2' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            {% endif %}
+                                            {% if comment.star == '3' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
-                                <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند</p>
-                                <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
+                                <p class="desc">{{ comment.message }}</p>
                             </div>
                             <!--== End Reviews Content Item ==-->
-
-                            <!--== Start Reviews Content Item ==-->
-                            <div class="product-review-item product-review-reply">
-                                <div class="product-review-top">
-                                    <div class="product-review-thumb">
-                                        <img src="{% static "files/images/shop/product-details/comment2.webp" %}" alt="Images">
-                                    </div>
-                                    <div class="product-review-content">
-                                        <span class="product-review-name">توماس دو</span>
-                                        <span class="product-review-designation">توسعه دهنده</span>
-                                        <div class="product-review-icon">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند.</p>
-                                <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                            </div>
-                            <!--== End Reviews Content Item ==-->
-
-                            <!--== Start Reviews Content Item ==-->
-                            <div class="product-review-item mb-0">
-                                <div class="product-review-top">
-                                    <div class="product-review-thumb">
-                                        <img src="{% static "files/images/shop/product-details/comment3.webp" %}" alt="Images">
-                                    </div>
-                                    <div class="product-review-content">
-                                        <span class="product-review-name">توماس دو</span>
-                                        <span class="product-review-designation">توسعه دهنده</span>
-                                        <div class="product-review-icon">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند</p>
-                                <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                            </div>
-                            <!--== End Reviews Content Item ==-->
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
