@@ -45,14 +45,14 @@
                 <div class="col-sm-6 col-lg-4 mb-8">
                     <!--== Start Blog Item ==-->
                     <div class="post-item">
-                        <a href="#" class="thumb">
+                        <a href="{{ form.get_absolute_url }}" class="thumb">
                             <img src="{{ form.image.url }}" width="370" height="320" alt="Image-HasTech">
                         </a>
                         <div class="content">
                             {% for category in form.category.all %}
                             <a class="post-category" href="{{ form.get_absolute_url }}">{{ category.title }}</a>
                             {% endfor %}
-                            <h4 class="title"><a href="#">{{ form.title }}</a></h4>
+                            <h4 class="title"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
                             <ul class="meta">
                                 <li class="author-info"><span>توسط:</span> <a href="">{{ form.author }}</a></li>
                                 <li class="post-date">{{ form.created|date:'Y/m/d' }}<li>
@@ -86,7 +86,7 @@
                             <!--== Start Blog Item ==-->
                             <div class="post-item">
                                 <div class="content">
-                                    <h4 class="title mt-0"><a href="#">{{ form.title }}</a></h4>
+                                    <h4 class="title mt-0"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
                                     <p class="desc">{{ form.body|truncatechars:100 }}</p>
                                     <a class="btn-link" href="{{ form.get_absolute_url }}">بیشتر بدانید</a>
                                 </div>
