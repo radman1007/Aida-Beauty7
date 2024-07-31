@@ -13,6 +13,8 @@ def product(request):
 def product_detail(request, pk):
     post = get_object_or_404(Product, pk=pk)
     comments = post.comments.filter(publish=True)
+    forms = Product.objects.all()
+    others = forms[:3]
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -22,6 +24,7 @@ def product_detail(request, pk):
     context = {
         'post' : post,
         'comments' : comments,
+        'others' : others,
     }
     return render(request, "product-detail.html", context)
 
