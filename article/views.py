@@ -3,10 +3,13 @@ from .models import Blog, Category, StaticBlog
 
 def blog(request):
     statics = StaticBlog.objects.filter(accept=True)
-    forms = Blog.objects.all()
+    forms = Blog.objects.all().order_by('-created')
+    top_two = forms[:2]
+    others = forms[2:]
     context = {
         'statics' : statics,
-        'forms' : forms,
+        'top_two' : top_two,
+        'others' : others,
     }
     return render(request, "blog.html", context)
 
