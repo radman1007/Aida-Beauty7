@@ -157,7 +157,7 @@
         <div class="container">
             <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
                 {% for post in posts %}
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-8" id="product{{ post.id }}">
                         <!--== Start Product Item ==-->
                         <div class="product-item">
                             <div class="product-thumb">
@@ -173,6 +173,7 @@
                                     <form action="{% url "cart_add" post.id %}" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="next_page" value="product">
                                         <button type="submit" class="product-action-btn action-btn-cart"
                                                 data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                             <span>به سبد خرید اضافه کنید</span>
@@ -255,3 +256,66 @@
     <!--== End Product Banner Area Wrapper ==-->
 </main>
 {% endblock _body_ %}
+{% block aside_product %}
+{% for post in posts %}
+<!--== Start Product Quick View Modal ==-->
+<aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="product-quick-view-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        <span class="fa fa-close"></span>
+                    </button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!--== Start Product Thumbnail Area ==-->
+                                <div class="product-single-thumb">
+                                    <img src="{{ post.image.url }}" width="544" height="560" alt="Image-HasTech">
+                                </div>
+                                <!--== End Product Thumbnail Area ==-->
+                            </div>
+                            <div class="col-lg-6">
+                                <!--== Start Product Info Area ==-->
+                                <div class="product-details-content">
+                                    <h5 class="product-details-collection">مجموعه ممتاز</h5>
+                                    <h3 class="product-details-title">{{ post.title }}</h3>
+                                    <div class="product-details-review mb-5">
+                                        <div class="product-review-icon">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-half-o"></i>
+                                        </div>
+                                        <button type="button" class="product-review-show">150 بررسی</button>
+                                    </div>
+                                    <p class="mb-6">{{ post.body }}</p>
+                                    <div class="product-details-action">
+                                        <h4 class="price">{{ post.price }} تومان</h4>
+                                        <div class="product-details-cart-wishlist">
+                                            <form action="{% url "cart_add" post.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <div class="product-details-pro-qty">
+                                                    <div class="pro-qty">
+                                                        <input name="quantity" type="text" title="Quantity" value="01">
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--== End Product Info Area ==-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<!--== End Product Quick View Modal ==-->
+{% endfor %}
+{% endblock aside_product %}

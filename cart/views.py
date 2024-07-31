@@ -24,6 +24,8 @@ def checkout(request):
 
 @require_POST
 def cart_add(request, product_id):
+    next_page = request.POST.get('next_page')
+    print(request.POST.get('quantity'))
     cart = Cart(request)
     product = get_object_or_404(Product, pk=product_id)
     form = AddToCartProductForm(request.POST)
@@ -31,6 +33,8 @@ def cart_add(request, product_id):
         cleaned_data = form.cleaned_data
         quantity = cleaned_data['quantity']
         cart.add(product, quantity, cleaned_data['inplace'])
+    if next_page != None:
+        return redirect(next_page)
     return redirect('cart')
 
 def cart_clear(request):
@@ -44,8 +48,11 @@ def cart_clear(request):
 
 @require_POST
 def cart_remove(request, product_id):
+    next_page = request.POST.get('cart_base')
     cart = Cart(request)
     product = get_object_or_404(Product, pk=product_id)
     cart.remove(product)
+    if next_page != None:
+        return redirect(next_page)
     return redirect('cart')
     

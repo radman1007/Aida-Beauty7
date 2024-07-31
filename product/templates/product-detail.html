@@ -61,11 +61,11 @@
                                 <label class="form-check-label" for="qtyList2">بطری 25 میلی لیتری <b>350.00 تومان</b> <span class="extra-offer">25% اضافی</span></label>
                             </div>
                         </div>
-                        <div class="product-details-pro-qty">
+                        {% comment %} <div class="product-details-pro-qty">
                             <div class="pro-qty">
-                                <input type="text" title="Quantity" value="01">
+                                <input name="quantity" type="text" title="Quantity" value="01">
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                         {% comment %} <div class="product-details-shipping-cost">
                             <input class="form-check-input" type="checkbox" value="" id="ShippingCost" checked>
                             <label class="form-check-label" for="ShippingCost">حمل و نقل از ایالات متحده آمریکا، هزینه حمل و نقل 4.22 تومان</label>
@@ -76,6 +76,12 @@
                                 <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
                                 <form action="{% url "cart_add" post.id %}" method="POST">
                                     {% csrf_token %}
+                                    <input type="hidden">
+                                    <div class="product-details-pro-qty">
+                                        <div class="pro-qty">
+                                            <input name="quantity" type="text" title="Quantity" value="01">
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>
                                 </form>
                             </div>

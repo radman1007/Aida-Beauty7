@@ -293,62 +293,7 @@
 </aside>
 <!--== End Aside Search Form ==-->
 
-<!--== Start Product Quick View Modal ==-->
-<aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="product-quick-view-content">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <span class="fa fa-close"></span>
-                    </button>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <!--== Start Product Thumbnail Area ==-->
-                                <div class="product-single-thumb">
-                                    <img src="{% static "files/images/shop/quick-view1.webp" %}" width="544" height="560" alt="Image-HasTech">
-                                </div>
-                                <!--== End Product Thumbnail Area ==-->
-                            </div>
-                            <div class="col-lg-6">
-                                <!--== Start Product Info Area ==-->
-                                <div class="product-details-content">
-                                    <h5 class="product-details-collection">مجموعه ممتاز</h5>
-                                    <h3 class="product-details-title">پاک کن آفلاین</h3>
-                                    <div class="product-details-review mb-5">
-                                        <div class="product-review-icon">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                        <button type="button" class="product-review-show">150 بررسی</button>
-                                    </div>
-                                    <p class="mb-6">برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند و در کنار این‌ها، همیشه از اصل بودن و کیفیت بالای خرید خود اطمینان داشته باشند.</p>
-                                    <div class="product-details-pro-qty">
-                                        <div class="pro-qty">
-                                            <input type="text" title="Quantity" value="01">
-                                        </div>
-                                    </div>
-                                    <div class="product-details-action">
-                                        <h4 class="price">254.00 تومان</h4>
-                                        <div class="product-details-cart-wishlist">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--== End Product Info Area ==-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</aside>
-<!--== End Product Quick View Modal ==-->
+{% block aside_product %}{% endblock aside_product %}
 
 <!--== Start Aside Cart ==-->
 <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
@@ -358,16 +303,22 @@
     </div>
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
+            {% for item in cart %}
             <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
+                <form action="{% url "cart_remove" item.product_obj.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="index" name="cart_base">
+                    <button type="submit" class="remove border-0 bg-transparent">×</button>
+                </form>
                 <a href="product-details.html">
-                    <img src="{% static "files/images/shop/cart1.webp" %}" width="68" height="84" alt="Image">
-                    <span class="product-title">دمپایی مردانه چرم</span>
+                    <img src="{{ item.product_obj.image.url }}" width="68" height="84" alt="Image">
+                    <span class="product-title">{{ item.product_obj.title }}</span>
                 </a>
-                <span class="product-price">1 × 69.00 تومان</span>
+                <span class="product-price">{{ item.quantity }} × {{ item.product_obj.price }} تومان</span>
             </li>
+            {% endfor %}
         </ul>
-        <p class="cart-total"><span>جمع کل:</span><span class="amount">89.00 تومان</span></p>
+        <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_price }} تومان</span></p>
         <a class="btn-total" href="{% url "cart" %}">مشاهده سبد خرید</a>
         <a class="btn-total" href="{% url "checkout" %}">پرداخت</a>
     </div>
