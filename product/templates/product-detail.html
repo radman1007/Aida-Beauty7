@@ -40,40 +40,20 @@
                     <div class="product-details-content">
                         <h5 class="product-details-collection">مجموعه ممتاز</h5>
                         <h3 class="product-details-title">{{ post.title }}</h3>
-                        <div class="product-details-review">
-                            <div class="product-review-icon">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <button type="button" class="product-review-show">150 بررسی</button>
-                        </div>
                         <div class="product-details-qty-list">
                             <div class="qty-list-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="qtyList1" checked>
-                                <label class="form-check-label" for="qtyList1">بطری 15 میلی لیتری<b>250.00 تومان</b></label>
+                                <label class="form-check-label" for="qtyList1">ارسال از طریق تیپاکس</label>
                             </div>
-
                             <div class="qty-list-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="qtyList2">
-                                <label class="form-check-label" for="qtyList2">بطری 25 میلی لیتری <b>350.00 تومان</b> <span class="extra-offer">25% اضافی</span></label>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="qtyList1" checked>
+                                <label class="form-check-label" for="qtyList1">ارسال از طریق پست</label>
                             </div>
                         </div>
-                        {% comment %} <div class="product-details-pro-qty">
-                            <div class="pro-qty">
-                                <input name="quantity" type="text" title="Quantity" value="01">
-                            </div>
-                        </div> {% endcomment %}
-                        {% comment %} <div class="product-details-shipping-cost">
-                            <input class="form-check-input" type="checkbox" value="" id="ShippingCost" checked>
-                            <label class="form-check-label" for="ShippingCost">حمل و نقل از ایالات متحده آمریکا، هزینه حمل و نقل 4.22 تومان</label>
-                        </div> {% endcomment %}
                         <div class="product-details-action">
                             <h4 class="price">{{ post.price }} تومان</h4>
                             <div class="product-details-cart-wishlist">
-                                <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
+                                <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> 
                                 <form action="{% url "cart_add" post.id %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden">
