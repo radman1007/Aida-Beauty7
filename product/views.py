@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Comment
 from article.models import Category
 
 def product(request):
@@ -11,8 +11,10 @@ def product(request):
 
 def product_detail(request, pk):
     post = get_object_or_404(Product, pk=pk)
+    comments = post.comments.filter()
     context = {
-        'post' : post
+        'post' : post,
+        'comments' : comments,
     }
     return render(request, "product-detail.html", context)
 

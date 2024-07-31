@@ -30,6 +30,7 @@ class Comment(models.Model):
     message = models.TextField()
     email = models.EmailField(blank=True, null=True)
     star = models.CharField(max_length=2, choices=STAR_BOX)
+    publish = models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.name} : {self.message}"
