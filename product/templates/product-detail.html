@@ -150,6 +150,7 @@
                         <h4 class="product-form-title">بازپخش بگذارید</h4>
                         <div class="product-reviews-form">
                             <form action="" method="POST">
+                                {% csrf_token %}
                                 <div class="form-input-item">
                                     <textarea name="message" class="form-control" placeholder="بازخورد خود را وارد کنید"></textarea>
                                 </div>
