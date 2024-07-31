@@ -187,17 +187,17 @@
                         <div class="product-reviews-form">
                             <form action="#">
                                 <div class="form-input-item">
-                                    <textarea class="form-control" placeholder="بازخورد خود را وارد کنید"></textarea>
+                                    <textarea name="message" class="form-control" placeholder="بازخورد خود را وارد کنید"></textarea>
                                 </div>
                                 <div class="form-input-item">
-                                    <input class="form-control" type="text" placeholder="نام و نام خانوادگی">
+                                    <input name="name" class="form-control" type="text" placeholder="نام و نام خانوادگی">
                                 </div>
                                 <div class="form-input-item">
-                                    <input class="form-control" type="email" placeholder="آدرس ایمیل (اختیاری)">
+                                    <input name="email" class="form-control" type="email" placeholder="آدرس ایمیل (اختیاری)">
                                 </div>
                                 <div class="form-input-item">
                                     <div class="form-ratings-item">
-                                        <select id="product-review-form-rating-select" class="select-ratings">
+                                        <select name="star" id="product-review-form-rating-select" class="select-ratings">
                                             <option value="1">01</option>
                                             <option value="2">02</option>
                                             <option value="3">03</option>
@@ -205,7 +205,7 @@
                                             <option value="5">05</option>
                                         </select>
                                         <span class="title">رتبه بندی خود را ارائه دهید</span>
-                                        <div class="product-ratingsform-form-wrap">
+                                        {% comment %} <div class="product-ratingsform-form-wrap">
                                             <div class="product-ratingsform-form-icon">
                                                 <i class="fa fa-star-o"></i>
                                                 <i class="fa fa-star-o"></i>
@@ -220,12 +220,7 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="reviews-form-checkbox">
-                                        <input class="form-check-input" type="checkbox" value="" id="ReviewsFormCheckbox" checked>
-                                        <label class="form-check-label" for="ReviewsFormCheckbox">رتبه بندی را به صورت ناشناس ارائه دهید.
-                                        </label>
+                                        </div> {% endcomment %}
                                     </div>
                                 </div>
                                 <div class="form-input-item mb-0">
