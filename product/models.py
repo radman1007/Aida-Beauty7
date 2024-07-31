@@ -18,11 +18,18 @@ class Product(models.Model):
     
 
 class Comment(models.Model):
+    STAR_BOX = {
+        '1' : 1,
+        '2' : 2,
+        '3' : 3,
+        '4' : 4,
+        '5' : 5,
+    }
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=250)
     message = models.TextField()
     email = models.EmailField(blank=True, null=True)
-    star = models.CharField(max_length=2)
+    star = models.CharField(max_length=2, choices=STAR_BOX)
     
     def __str__(self):
         return f"{self.name} : {self.message}"
