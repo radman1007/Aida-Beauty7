@@ -15,3 +15,13 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product_detail", kwargs={"pk": self.pk})
+    
+
+class Comment(models.Model):
+    name = models.CharField(max_length=250)
+    message = models.TextField()
+    email = models.EmailField(blank=True, null=True)
+    star = models.CharField(max_length=2)
+    
+    def __str__(self):
+        return f"{self.name} : {self.message}"
