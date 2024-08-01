@@ -35,7 +35,7 @@
                         <button class="nav-link" id="payment-method-tab" data-bs-toggle="tab" data-bs-target="#payment-method" type="button" role="tab" aria-controls="payment-method" aria-selected="false">روش پرداخت</button>
                         <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">نشانی</button>
                         <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">جزئیات حساب</button>
-                        <button class="nav-link" onclick="" type="button"><form action="{% url "account_logout" %}" method="post">{% csrf_token %}خروج</form></button>
+                        <form class="" action="{% url "logout" %}">{% csrf_token %} <button class="nav-link" type="submit">خروج</button></form>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8">
@@ -44,7 +44,7 @@
                             <div class="myaccount-content">
                                 <h3>داشبورد</h3>
                                 <div class="welcome">
-                                    <p>سلام, <strong>جلیل سرور</strong> (اگر نه <strong>تونتونی!</strong><a href="{% url "account_login" %}" class="logout"> خروج</a>)</p>
+                                    <p>سلام, <strong>جلیل سرور</strong> (اگر نه <strong>تونتونی!</strong>)</p>
                                 </div>
                                 <p>از داشبورد حساب شما. شما می توانید به راحتی سفارشات اخیر خود را بررسی و مشاهده کنید، آدرس های حمل و نقل و صورتحساب خود را مدیریت کنید و رمز عبور و جزئیات حساب خود را ویرایش کنید.</p>
                             </div>
