@@ -59,30 +59,16 @@
                             <li class="has-submenu"><a href="{% url "index" %}">خانه</a>
                             </li>
                             <li><a href="{% url "about" %}">درباره ما</a></li>
-                            <li class="has-submenu position-static"><a href="{% url "product" %}">فروشگاه</a>
-                                <ul class="submenu-nav-mega">
-                                    <li><a href="#/" class="mega-title">چیدمان فروشگاه</a>
-                                        <ul>
-                                            <li><a href="{% url "product" %}">محصولات</a></li>
-                                            <li><a href="{% url "product_filter" %}">فیلتر محصولات</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="" class="mega-title">صفحات دیگر</a>
-                                        <ul>
-                                            <li><a href="{% url "cart" %}">سبد خرید</a></li>
-                                            <li><a href="{% url "checkout" %}">پرداخت</a></li>
-                                        </ul>
-                                    </li>
+                            <li class="has-submenu"><a href="{% url "product" %}">فروشگاه</a>
+                                <ul class="submenu-nav">
+                                    <li><a href="{% url "product" %}">محصولات</a></li>
+                                    <li><a href="{% url "product_filter" %}">فیلتر محصولات</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu"><a href="{% url "blog" %}">وبلاگ</a>
                                 <ul class="submenu-nav">
-                                    <li class="has-submenu"><a href="">چیدمان بلاگ</a>
-                                        <ul class="submenu-nav">
-                                            <li><a href="{% url "blog" %}">شبکه وبلاگ</a></li>
-                                            <li><a href="{% url "blog_filter" %}">فیلتر بلاگ</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{% url "blog" %}">شبکه وبلاگ</a></li>
+                                    <li><a href="{% url "blog_filter" %}">فیلتر بلاگ</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu"><a href="{% url "faq" %}">سوالات متداول</a></li>
