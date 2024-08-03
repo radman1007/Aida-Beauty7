@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from article.models import Blog
 from product.models import Product
 from .forms import ContactForm
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     forms = Blog.objects.all()
@@ -27,5 +29,6 @@ def contact(request):
     }
     return render(request, "contact.html", context)
 
+@login_required()
 def profile(request):
     return render(request, 'my-account.html')

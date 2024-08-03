@@ -85,12 +85,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="has-submenu"><a href="">صفحه</a>
-                                <ul class="submenu-nav">
-                                    <li><a href="{% url "profile" %}">حساب کاربری</a></li>
-                                    <li><a href="{% url "faq" %}">سوالات متداول</a></li>
-                                </ul>
-                            </li>
+                            <li class="has-submenu"><a href="{% url "faq" %}">سوالات متداول</a></li>
                             <li><a href="{% url "contact" %}">ارتباط با ما</a></li>
                         </ul>
                     </div>
@@ -125,7 +120,7 @@
                 </span>
                         </button>
 
-                        <a class="header-action-btn" href="{% url "login" %}">
+                        <a class="header-action-btn" href="{% if user.is_authenticated %}{% url "profile" %}{% else %}{% url "login" %}{% endif %}">
                                 <span class="icon">
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)"/>
