@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 from article.models import Blog
-from product.models import Product
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
+from .models import BaseCategory
 
 
 def index(request):
     forms = Blog.objects.all()
+    base_categories = BaseCategory.objects.all()
     context = {
         'forms' : forms,
+        'base_categories' : base_categories,
     }
     return render(request, "index.html", context)
 
