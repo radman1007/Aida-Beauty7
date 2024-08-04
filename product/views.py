@@ -2,11 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Comment
 from article.models import Category
 from .forms import CommentForm
+from home.models import BaseCategory
 
 def product(request):
+    base_categories = BaseCategory.objects.all()
     posts = Product.objects.all()
     context = {
-        'posts' : posts
+        'base_categories' : base_categories,
+        'posts' : posts,
     }
     return render(request, "product.html", context)
 

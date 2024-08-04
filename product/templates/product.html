@@ -90,63 +90,16 @@
     <section class="section-space pb-0">
         <div class="container">
             <div class="row g-3 g-sm-6">
+                {% for base_category in base_categories %}
                 <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
                     <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item">
-                        <img class="icon" src="{% static "files/images/shop/category/1.webp" %}" width="70" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">مراقبت از خرگوش</h3>
-                        <span class="flag-new">جدید</span>
+                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="{{ base_category.color }}">
+                        <img class="icon" src="{{ base_category.image.url }}" width="70" height="80" alt="Image-HasTech">
+                        <h3 class="title">{{ base_category.name }}</h3>
                     </a>
                     <!--== End Product Category Item ==-->
                 </div>
-                <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                    <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="#FFEDB4">
-                        <img class="icon" src="{% static "files/images/shop/category/2.webp" %}" width="80" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">مراقبت از پوست</h3>
-                    </a>
-                    <!--== End Product Category Item ==-->
-                </div>
-                <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-0 mt-sm-6 mt-4">
-                    <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="#DFE4FF">
-                        <img class="icon" src="{% static "files/images/shop/category/3.webp" %}" width="80" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">رژ لب</h3>
-                    </a>
-                    <!--== End Product Category Item ==-->
-                </div>
-                <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                    <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="#FFEACC">
-                        <img class="icon" src="{% static "files/images/shop/category/4.webp" %}" width="80" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">پوست صورت</h3>
-                        <span data-bg-color="#835BF4" class="flag-new">فروش</span>
-                    </a>
-                    <!--== End Product Category Item ==-->
-                </div>
-                <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                    <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="#FFDAE0">
-                        <img class="icon" src="{% static "files/images/shop/category/5.webp" %}" width="80" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">رژگونه</h3>
-                    </a>
-                    <!--== End Product Category Item ==-->
-                </div>
-                <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                    <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="#FFF3DA">
-                        <img class="icon" src="{% static "files/images/shop/category/6.webp" %}" width="80" height="80"
-                                alt="Image-HasTech">
-                        <h3 class="title">طبیعی
-                        </h3>
-                    </a>
-                    <!--== End Product Category Item ==-->
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
