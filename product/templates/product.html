@@ -172,6 +172,7 @@
                         <!--== End prPduct Item ==-->
                     </div>
                 {% endfor %}
+                {% if page_obj.number %}
                 <div class="col-12">
                     <ul class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
                         {% if page_obj.has_next %}
@@ -195,6 +196,7 @@
                         {% endif %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>

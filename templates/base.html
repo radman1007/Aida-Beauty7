@@ -261,10 +261,11 @@
                 <div class="search-note">
                     <p>شروع به تایپ کنید و اینتر را برای جستجو فشار دهید</p>
                 </div>
-                <form action="#" method="post">
+                <form action="{% url "product" %}" method="POST">
+                    {% csrf_token %}
                     <div class="aside-search-form position-relative">
                         <label for="SearchInput" class="visually-hidden">جستجو</label>
-                        <input id="SearchInput" type="search" class="form-control" placeholder="جستجوی کل فروشگاه…">
+                        <input name="search_query" id="SearchInput" type="search" class="form-control" placeholder="جستجوی کل فروشگاه…">
                         <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                 </form>

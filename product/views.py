@@ -4,9 +4,19 @@ from article.models import Category
 from .forms import CommentForm
 from home.models import BaseCategory
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 def product(request):
     base_categories = BaseCategory.objects.all()
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        if len(search_query) >= 1:
+            posts = Product.objects.filter(Q(title__icontains=search_query))
+            context = {
+                'posts' : posts,
+                'query' : search_query,
+                }
+            return render(request, 'product.html', context)
     posts = Product.objects.all()
     paginator = Paginator(posts, 12)
     page_number = request.GET.get('page')
