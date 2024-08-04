@@ -8,3 +8,11 @@ class Contact(models.Model):
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+    
+class BaseCategory(models.Model):
+    name = models.CharField(max_length=250)
+    image = models.ImageField()
+    
+    def __str__(self):
+        return self.name
