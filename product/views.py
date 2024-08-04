@@ -3,13 +3,18 @@ from .models import Product, Comment
 from article.models import Category
 from .forms import CommentForm
 from home.models import BaseCategory
+from django.core.paginator import Paginator
 
 def product(request):
     base_categories = BaseCategory.objects.all()
     posts = Product.objects.all()
+    paginator = Paginator(posts, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'base_categories' : base_categories,
         'posts' : posts,
+        'page_obj' : page_obj,
     }
     return render(request, "product.html", context)
 

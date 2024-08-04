@@ -174,21 +174,25 @@
                 {% endfor %}
                 <div class="col-12">
                     <ul class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
+                        {% if page_obj.has_next %}
                         <li class="page-item">
-
-                            <a class="page-link next" href="{% url "product" %}" aria-label="Next">
+                            <a class="page-link next" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
                                 <span class="fa fa-chevron-right" aria-hidden="true"></span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="{% url "product" %}">01</a></li>
+                        {% endif %}
+                        <li class="page-item"><a class="page-link" href="{% url "product" %}">{{ page_obj.number }}</a></li>
+                        {% comment %} <li class="page-item"><a class="page-link" href="{% url "product" %}">01</a></li>
                         <li class="page-item"><a class="page-link" href="{% url "product" %}">02</a></li>
                         <li class="page-item"><a class="page-link" href="{% url "product" %}">03</a></li>
-                        <li class="page-item"><a class="page-link" href="{% url "product" %}">....</a></li>
+                        <li class="page-item"><a class="page-link" href="{% url "product" %}">....</a></li> {% endcomment %}
+                        {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link previous" href="{% url "product" %}" aria-label="Previous">
+                            <a class="page-link previous" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
                                 <span class="fa fa-chevron-left" aria-hidden="true"></span>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
