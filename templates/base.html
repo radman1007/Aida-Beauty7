@@ -71,7 +71,7 @@
                                     <li><a href="{% url "blog_filter" %}">فیلتر بلاگ</a></li>
                                 </ul>
                             </li>
-                            <li class="has-submenu"><a href="{% url "faq" %}">سوالات متداول</a></li>
+                            <li><a href="{% url "faq" %}">سوالات متداول</a></li>
                             <li><a href="{% url "contact" %}">ارتباط با ما</a></li>
                         </ul>
                     </div>
@@ -315,45 +315,24 @@
     <div class="offcanvas-body">
         <div id="offcanvasNav" class="offcanvas-menu-nav">
             <ul>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "index" %}">صفحه اصلی</a>
-                </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "about" %}">در باره</a></li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "product" %}">فروشگاه</a>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "index" %}">صفحه اصلی</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "about" %}">درباره ما</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">فروشگاه</a>
                     <ul>
-                        <li><a href="#" class="offcanvas-nav-item">چیدمان فروشگاه</a>
-                            <ul>
-                                <li><a href="{% url "product" %}">محصولات</a></li>
-                                <li><a href="{% url "product_filter" %}">فیلتر محصولات</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" class="offcanvas-nav-item">صفحات دیگر</a>
-                            <ul>
-                                <li><a href="{% url "cart" %}">سبد خرید</a></li>
-                                <li><a href="{% url "checkout" %}">پرداخت</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{% url "blog" %}">محصولات</a></li>
+                        <li><a href="{% url "blog_filter" %}">فیلتر محصولات</a></li>
                     </ul>
                 </li>
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">وبلاگ</a>
                     <ul>
-                        <li><a class="offcanvas-nav-item" href="#">چیدمان وبلاگ</a>
-                            <ul>
-                                <li><a href="{% url "blog" %}">شبکه وبلاگ</a></li>
-                                <li><a href="{% url "blog_filter" %}">فیلتر بلاگ</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{% url "blog" %}">شبکه وبلاگ</a></li>
+                        <li><a href="{% url "blog_filter" %}">فیلتر بلاگ</a></li>
                     </ul>
                 </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">صفحه</a>
-                    <ul>
-                        <li><a href="{% url "profile" %}">حساب کاربری</a></li>
-                        <li><a href="{% url "faq" %}">سوالات متداول</a></li>
-                    </ul>
-                </li>
+                <li><a href="{% url "faq" %}">سوالات متداول</a></li>
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url "contact" %}">ارتباط با ما</a></li>
             </ul>
         </div>
-
     </div>
 </aside>
 
