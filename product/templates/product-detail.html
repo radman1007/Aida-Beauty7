@@ -38,7 +38,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-details-content">
-                        <h5 class="product-details-collection">مجموعه ممتاز</h5>
                         <h3 class="product-details-title">{{ post.title }}</h3>
                         <div class="product-details-qty-list">
                             <div class="qty-list-check">
@@ -59,7 +58,7 @@
                                     <input type="hidden">
                                     <div class="product-details-pro-qty">
                                         <div class="pro-qty">
-                                            <input name="quantity" type="text" title="Quantity" value="01">
+                                            <input name="quantity" type="text" title="Quantity" value="1">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>
@@ -78,12 +77,16 @@
                     <div class="tab-content" id="product-details-nav-tabContent">
                         <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
                             <ul class="product-details-info-wrap">
+                                {% if post.weight %}
                                 <li><span>وزن</span>
                                     <p>{{ post.weight }} گرم</p>
                                 </li>
+                                {% endif %}
+                                {% if post.mater %}
                                 <li><span>مواد</span>
                                     <p>{{ post.mater }}</p>
                                 </li>
+                                {% endif %}
                             </ul>
 
                             <p>{{ post.body }}</p>

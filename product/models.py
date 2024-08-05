@@ -10,8 +10,8 @@ class Product(models.Model):
     price = models.PositiveIntegerField(default=0)
     body = models.TextField()
     category = models.ManyToManyField(BaseCategory, related_name='category')
-    weight = models.PositiveIntegerField()
-    mater = models.CharField(max_length=255)
+    weight = models.PositiveIntegerField(null=True, blank=True)
+    mater = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
