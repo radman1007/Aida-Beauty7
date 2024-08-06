@@ -11,6 +11,7 @@ class Product(models.Model):
     previous_price = models.PositiveIntegerField(verbose_name="قیمت قبلی", null=True, blank=True)
     body = models.TextField(verbose_name="توضیحات")
     category = models.ManyToManyField(BaseCategory, related_name='category', verbose_name="دسته بندی")
+    available = models.BooleanField(default=True, verbose_name="موجود")
     weight = models.PositiveIntegerField(null=True, blank=True, verbose_name="وزن")
     mater = models.CharField(max_length=255, null=True, blank=True, verbose_name="مواد تشکیل دهنده")
     created = models.DateTimeField(auto_now_add=True, verbose_name="زمان انتشار")

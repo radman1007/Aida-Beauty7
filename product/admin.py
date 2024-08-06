@@ -3,7 +3,7 @@ from .models import Product, Comment
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'price', 'created')
+    list_display = ('title', 'price', 'available', 'created')
     ordering = ('-created',)
     
     
