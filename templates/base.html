@@ -145,8 +145,9 @@
                 </div>
             </div>
             <div class="newsletter-form">
-                <form>
-                    <input type="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                <form action="{% url "index" %}" method='POST'>
+                    {% csrf_token %}
+                    <input name="email" type="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
                     <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
                 </form>
             </div>

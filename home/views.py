@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from article.models import Blog
-from .forms import ContactForm
+from .forms import ContactForm, NewsForm
 from django.contrib.auth.decorators import login_required
 from .models import BaseCategory
-
 
 def index(request):
     forms = Blog.objects.all()
     base_categories = BaseCategory.objects.all()
+    if request.method == 'POST':
+        news = NewsForm(request.POST)
+        if news.is_valid():
+            news.save()
     context = {
         'forms' : forms,
         'base_categories' : base_categories,
