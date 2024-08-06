@@ -49,6 +49,16 @@ def product_detail(request, pk):
 def product_filter(request):
     categories = Category.objects.all()
     posts = Product.objects.all()
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        if len(search_query) >= 1:
+            posts = Product.objects.filter(Q(title__icontains=search_query))
+            context = {
+                'posts' : posts,
+                'query' : search_query,
+                'categories' : categories,
+                }
+            return render(request, 'product-filter.html', context)
     context = {
         'posts' : posts,
         'categories' : categories,
