@@ -182,7 +182,9 @@
                             <li><a href="{% url "contact" %}">مخاطب</a></li>
                             <li><a href="{% url "login" %}">ورود</a></li>
                             <li><a href="{% url "product" %}">فروشگاه</a></li>
+                            {% if user.is_authenticated %}
                             <li><a href="{% url "profile" %}">اکانت من</a></li>
+                            {% endif %}
                             <li><a href="{% url "faq" %}">سوالات متداول</a></li>
                         </ul>
                     </div>
