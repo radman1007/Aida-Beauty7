@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from article.models import Blog
+from product.models import Product
 from .forms import ContactForm, NewsForm
 from django.contrib.auth.decorators import login_required
 from .models import BaseCategory
 
 def index(request):
     forms = Blog.objects.all()
+    posts = Product.objects.all().order_by('-created')
+    top_nine = posts[:9]
     base_categories = BaseCategory.objects.all()
     if request.method == 'POST':
         news = NewsForm(request.POST)
@@ -14,6 +17,7 @@ def index(request):
     context = {
         'forms' : forms,
         'base_categories' : base_categories,
+        'top_nine' : top_nine,
     }
     return render(request, "index.html", context)
 
