@@ -41,20 +41,19 @@
 
 <!--== Wrapper Start ==-->
 <div class="wrapper">
-
     <!--== Start Header Wrapper ==-->
-    <header class="header-area sticky-header header-transparent">
+    <header class="header-area sticky-header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-5 col-lg-2 col-xl-1">
+                <div class="col-5 col-sm-6 col-lg-3">
                     <div class="header-logo">
                         <a href="{% url "index" %}">
                             <img class="logo-main" src="{% static "files/images/aida-beauty7.png" %}" width="136" height="68" alt="Logo" />
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-7 col-xl-7 d-none d-lg-block">
-                    <div class="header-navigation ps-7">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="header-navigation">
                         <ul class="main-nav justify-content-start">
                             <li class="has-submenu {% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url "index" %}">خانه</a></li>
                             <li class="{% if request.resolver_match.url_name == "about" %}active{% endif %}"><a href="{% url "about" %}">درباره ما</a></li>
@@ -75,7 +74,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-7 col-lg-3 col-xl-4">
+                <div class="col-7 col-sm-6 col-lg-3">
                     <div class="header-action justify-content-end">
                         <button class="header-action-btn ms-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
                                 <span class="icon">
@@ -129,7 +128,7 @@
             </div>
         </div>
     </header>
-   <!--== End Header Wrapper ==-->
+    <!--== End Header Wrapper ==-->
 
    {% block _body_ %}{% endblock _body_ %}
 

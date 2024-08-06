@@ -8,6 +8,7 @@ class Product(models.Model):
     title = models.CharField(max_length=255, verbose_name="اسم")
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
+    previous_price = models.PositiveIntegerField(verbose_name="قیمت قبلی", null=True, blank=True)
     body = models.TextField(verbose_name="توضیحات")
     category = models.ManyToManyField(BaseCategory, related_name='category', verbose_name="دسته بندی")
     weight = models.PositiveIntegerField(null=True, blank=True, verbose_name="وزن")

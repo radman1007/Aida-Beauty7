@@ -91,6 +91,9 @@
                                 <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 <div class="prices">
                                     <span class="price">{{ post.price }} تومان</span>
+                                    {% if post.previous_price %}
+                                    <span class="price-old">{{ post.previous_price }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="product-action-bottom">
