@@ -46,8 +46,9 @@
                 <div class="col-xl-4">
                     <div class="blog-sidebar-widget">
                         <div class="blog-search-widget">
-                            <form action="#">
-                                <input type="search" placeholder="اینجا جستجو کنید">
+                            <form action="{% url "blog_filter" %}" method="POST">
+                                {% csrf_token %}
+                                <input name="search_query" type="search" placeholder="اینجا جستجو کنید">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Blog, Category, StaticBlog
+from django.db.models import Q
 
 def blog(request):
     statics = StaticBlog.objects.filter(accept=True)
@@ -16,6 +17,16 @@ def blog(request):
 def blog_filter(request):
     categories = Category.objects.all()
     forms = Blog.objects.all()
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        if len(search_query) >= 1:
+            forms = Blog.objects.filter(Q(title__icontains=search_query))
+            context = {
+                'forms' : forms,
+                'query' : search_query,
+                'categories' : categories,
+                }
+            return render(request, 'blog-filter.html', context)
     context = {
         'forms' : forms,
         'categories' : categories
