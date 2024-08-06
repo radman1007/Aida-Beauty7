@@ -57,7 +57,9 @@
                                 <a class="d-block" href="{{ post.get_absolute_url }}">
                                     <img src="{{ post.image.url }}" width="370" height="450" alt="Image-HasTech">
                                 </a>
-                                <span class="flag-new">جدید</span>
+                                {% if post.available == False %}
+                                <span class="flag-new">ناموجود</span>
+                                {% endif %}
                                 <div class="product-action">
                                     <button type="button" class="product-action-btn action-btn-quick-view"
                                             data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">

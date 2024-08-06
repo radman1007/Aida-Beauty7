@@ -34,7 +34,9 @@
                         {% if post.image %}
                             <img src="{{ post.image.url }}" width="570" height="693" alt="Image">
                         {% endif %}
-                        <span class="flag-new">جدید</span>
+                        {% if post.available == False %}
+                        <span class="flag-new">ناموجود</span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-lg-6">
