@@ -38,15 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # 'allauth',
     # 'allauth.account',
     'jalali_date',
+
     'home',
     'accounts',
     'product',
     'article',
     'cart',
     'error',
+    'translate',
 ]
 
 MIDDLEWARE = [
