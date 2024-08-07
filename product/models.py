@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from accounts.models import User
 from home.models import BaseCategory
+from django.utils import timezone
 from jalali_date.admin import ModelAdminJalaliMixin
 
 
@@ -15,7 +16,7 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name="موجود")
     weight = models.PositiveIntegerField(null=True, blank=True, verbose_name="وزن")
     mater = models.CharField(max_length=255, null=True, blank=True, verbose_name="مواد تشکیل دهنده")
-    created = models.DateTimeField(auto_now_add=True, verbose_name="زمان انتشار")
+    created = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
     
     def __str__(self):
         return self.title
