@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from ckeditor.fields import RichTextField
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255, verbose_name="اسم")
@@ -16,7 +18,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=250, verbose_name="اسم")
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
     author = models.CharField(max_length=250, verbose_name="نویسنده")
-    body = models.TextField(verbose_name="توضیحات")
+    body = RichTextField(verbose_name="توضیحات")
     category = models.ManyToManyField(Category, related_name='category', verbose_name="دسته بندی ها")
     created = models.DateTimeField(auto_now_add=True, verbose_name="زمان انتشار")
     updated = models.DateTimeField(auto_now=True, verbose_name="زمان بروزرسانی")
@@ -36,7 +38,7 @@ class StaticBlog(models.Model):
     title = models.CharField(max_length=250, verbose_name="اسم")
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
     author = models.CharField(max_length=250, verbose_name="نویسنده")
-    body = models.TextField(verbose_name="توضیحات")
+    body = RichTextField(verbose_name="توضیحات")
     created = models.DateTimeField(auto_now_add=True, verbose_name="زمان انتشار")
     accept = models.BooleanField(default=False, verbose_name="تایید شده")
     

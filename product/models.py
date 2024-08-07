@@ -3,6 +3,7 @@ from django.urls import reverse
 from accounts.models import User
 from home.models import BaseCategory
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 class Product(models.Model):
@@ -10,7 +11,7 @@ class Product(models.Model):
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
     previous_price = models.PositiveIntegerField(verbose_name="قیمت قبلی", null=True, blank=True)
-    body = models.TextField(verbose_name="توضیحات")
+    body = RichTextField(verbose_name="توضیحات")
     category = models.ManyToManyField(BaseCategory, related_name='category', verbose_name="دسته بندی")
     available = models.BooleanField(default=True, verbose_name="موجود")
     weight = models.PositiveIntegerField(null=True, blank=True, verbose_name="وزن")
