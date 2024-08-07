@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block title %}جزئیات محصـول{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -53,9 +54,9 @@
                             </div>
                         </div>
                         <div class="product-details-action">
-                            <h4 class="price">{{ post.price }} تومان</h4>
+                            <h4 class="price">{{ post.price|intcomma }} تومان</h4>
                             {% if post.previous_price %}
-                            <span class="price-old">{{ post.previous_price }}</span>
+                            <span class="price-old">{{ post.previous_price|intcomma }}</span>
                             {% endif %}
                             <div class="product-details-cart-wishlist">
                                 <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> 
@@ -257,9 +258,9 @@
                                         </div>
                                         <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                         <div class="prices">
-                                            <span class="price">{{ post.price }} تومان</span>
+                                            <span class="price">{{ post.price|intcomma }} تومان</span>
                                             {% if post.previous_price %}
-                                            <span class="price-old">{{ post.previous_price }}</span>
+                                            <span class="price-old">{{ post.previous_price|intcomma }}</span>
                                             {% endif %}
                                         </div>
                                         <div class="product-action">
