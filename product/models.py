@@ -3,7 +3,6 @@ from django.urls import reverse
 from accounts.models import User
 from home.models import BaseCategory
 from django.utils import timezone
-from jalali_date.admin import ModelAdminJalaliMixin
 
 
 class Product(models.Model):
