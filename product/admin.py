@@ -6,6 +6,7 @@ from jalali_date.admin import ModelAdminJalaliMixin
 class CommentsInline(admin.StackedInline):
     model = Comment
     fields = ['name', 'message', 'star', 'email', 'publish']
+    extra = 1
     
 
 @admin.register(Product)
