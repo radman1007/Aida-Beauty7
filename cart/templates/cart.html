@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block title %}سبد خرید{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -50,7 +51,7 @@
                                 <a class="title" href="{{ item.product_obj.get_absolute_url }}">{{ item.product_obj.title }}</a>
                             </td>
                             <td class="product-price">
-                                <span class="price">{{ item.product_obj.price }} تومان</span>
+                                <span class="price">{{ item.product_obj.price|intcomma:False }} تومان</span>
                             </td>
                             <td class="product-quantity">
                                 <div class="">
@@ -82,7 +83,7 @@
                             <tr class="cart-subtotal">
                                 <th>جمع کل</th>
                                 <td>
-                                    <span class="amount">{{ cart.get_total_price }} تومان</span>
+                                    <span class="amount">{{ cart.get_total_price|intcomma:False }} تومان</span>
                                 </td>
                             </tr>
                             </tbody>
