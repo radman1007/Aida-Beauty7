@@ -94,9 +94,9 @@
                                 </div>
                                 <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 <div class="prices">
-                                    <span class="price">{{ post.price|intcomma }} تومان</span>
+                                    <span class="price">{{ post.price|intcomma:False }} تومان</span>
                                     {% if post.previous_price %}
-                                    <span class="price-old">{{ post.previous_price|intcomma }}</span>
+                                    <span class="price-old">{{ post.previous_price|intcomma:False }}</span>
                                     {% endif %}
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                     </div>
                                     <p class="mb-6">{{ post.body }}</p>
                                     <div class="product-details-action">
-                                        <h4 class="price">{{ post.price|intcomma }} تومان</h4>
+                                        <h4 class="price">{{ post.price|intcomma:False }} تومان</h4>
                                         <div class="product-details-cart-wishlist">
                                             <form action="{% url "cart_add" post.id %}" method="POST">
                                                 {% csrf_token %}

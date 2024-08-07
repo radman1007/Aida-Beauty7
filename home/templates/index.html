@@ -141,9 +141,9 @@
                                 </div>
                                 <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 <div class="prices">
-                                    <span class="price">{{ post.price|intcomma }} تومان</span>
+                                    <span class="price">{{ post.price|intcomma:False }} تومان</span>
                                     {% if post.previous_price %}
-                                    <span class="price-old">{{ post.previous_price|intcomma }}</span>
+                                    <span class="price-old">{{ post.previous_price|intcomma:False }}</span>
                                     {% endif %}
                                 </div>
                             </div>
