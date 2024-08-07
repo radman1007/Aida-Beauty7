@@ -88,7 +88,7 @@
                             <div class="post-item">
                                 <div class="content">
                                     <h4 class="title mt-0"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
-                                    <p class="desc">{{ form.body|truncatechars:100 }}</p>
+                                    <p class="desc">{{ form.body|truncatechars:100|safe }}</p>
                                     <a class="btn-link" href="{{ form.get_absolute_url }}">بیشتر بدانید</a>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                             </a>
                             <div class="content">
                                 <h4 class="title mt-0"><a href="">{{ static.title }}</a></h4>
-                                <p class="desc">{{ static.body|linebreaks }}</p>
+                                <p class="desc">{{ static.body|linebreaks|safe }}</p>
                                 <ul class="meta">
                                     <li class="author-info"><span>توسط:</span>{{ static.author }}</li>
                                     <li class="post-date">{{ form.created|to_jalali:'%Y/%m/%d' }}</li>

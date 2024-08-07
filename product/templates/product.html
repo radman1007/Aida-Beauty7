@@ -184,7 +184,7 @@
                                         </div>
                                         <button type="button" class="product-review-show">150 بررسی</button>
                                     </div>
-                                    <p class="mb-6">{{ post.body }}</p>
+                                    <p class="mb-6">{{ post.body|safe }}</p>
                                     <div class="product-details-action">
                                         <h4 class="price">{{ post.price|intcomma:False }} تومان</h4>
                                         <div class="product-details-cart-wishlist">
