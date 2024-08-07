@@ -35,7 +35,10 @@ def blog_filter(request):
 
 def blog_detail(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
+    forms = Blog.objects.all()
+    others = forms[:3]
     context = {
-        'blog' : blog
+        'blog' : blog,
+        'others' : others,
     }
     return render(request, "blog-detail.html", context)
