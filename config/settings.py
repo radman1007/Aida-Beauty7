@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 'allauth',
     # 'allauth.account',
     'jalali_date',
+    'django.contrib.humanize',
 
     'home',
     'accounts',
