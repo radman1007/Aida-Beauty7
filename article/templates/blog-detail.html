@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load jalali_tags %}
 {% block title %}جزئیات بلاگ{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -32,7 +33,7 @@
                             <div class="col-md-7">
                                 <ul class="blog-detail-meta">
                                     <li class="meta-admin">{{ blog.author }}</li>
-                                    <li>{{ blog.created|date:'Y/m/d' }}</li>
+                                    <li>{{ blog.created|to_jalali:'%Y/%m/%d' }}</li>
                                 </ul>
                             </div>
                             <div class="col-md-5">
@@ -83,32 +84,6 @@
                     </a>
                 </div>
             </div>
-
-            <div class="blog-comment-form-wrap">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <h4 class="blog-comment-form-title">اظهار نظر</h4>
-                        <div class="blog-comment-form-info">
-                            <div class="blog-comment-form-social">
-                                <span>اشتراک گذاری:</span>
-                                <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            </div>
-                            <select class="blog-comment-form-select">
-                                <option selected>مرتب سازی بر اساس جدیدترین</option>
-                                <option value="1">بهترین</option>
-                                <option value="2">جدیدترین</option>
-                                <option value="3">قدیمی ترین</option>
-                            </select>
-                        </div>
-                        <div class="blog-comment-form">
-                            <img class="blog-comment-img" src="{% static "files/images/blog/form1.webp" %}" width="110" height="110" alt="Image">
-                            <textarea class="blog-comment-control" placeholder="نظر خود را تایپ کنید"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!--== End Blog Detail Area Wrapper ==-->
@@ -119,7 +94,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center">
-                        <h2 class="title">پست های دیگر</h2>
+                        <h2 class="title">پست های جدید</h2>
                         <p>برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </p>
                     </div>
                 </div>

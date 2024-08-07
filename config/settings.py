@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'allauth',
     # 'allauth.account',
+    'jalali_date',
     'home',
     'accounts',
     'product',

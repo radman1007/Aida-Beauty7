@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load jalali_tags %}
 {% block title %}بلاگ ها{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -55,7 +56,7 @@
                             <h4 class="title"><a href="{{ form.get_absolute_url }}">{{ form.title }}</a></h4>
                             <ul class="meta">
                                 <li class="author-info"><span>توسط:</span> <a href="">{{ form.author }}</a></li>
-                                <li class="post-date">{{ form.created|date:'Y/m/d' }}<li>
+                                <li class="post-date">{{ form.created|to_jalali:'%Y/%m/%d' }}<li>
                             </ul>
                         </div>
                     </div>
@@ -128,7 +129,7 @@
                                 <p class="desc">{{ static.body|linebreaks }}</p>
                                 <ul class="meta">
                                     <li class="author-info"><span>توسط:</span>{{ static.author }}</li>
-                                    <li class="post-date">{{ static.created|date:'Y/m/d' }}</li>
+                                    <li class="post-date">{{ form.created|to_jalali:'%Y/%m/%d' }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -167,7 +168,7 @@
                                 <h4 class="title"><a href="{{ form.get_absolute_url }}">{{ form.title|truncatechars:42 }}</a></h4>
                                 <ul class="meta">
                                     <li class="author-info"><span>توسط:</span> <a href="{{ form.get_absolute_url }}">{{ form.author }}</a></li>
-                                    <li class="post-date">{{ form.created|date:'Y/m/d' }}</li>
+                                    <li class="post-date">{{ form.created|to_jalali:'%Y/%m/%d' }}</li>
                                 </ul>
                             </div>
                         </div>
