@@ -62,10 +62,6 @@
                                 <span class="flag-new">ناموجود</span>
                                 {% endif %}
                                 <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view"
-                                            data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
                                     <form action="{% url "cart_add" post.id %}" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">
@@ -75,10 +71,6 @@
                                             <span>به سبد خرید اضافه کنید</span>
                                         </button>
                                     </form>
-                                    <button type="button" class="product-action-btn action-btn-wishlist"
-                                            data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
                                 </div>
                             </div>
                             <div class="product-info">
