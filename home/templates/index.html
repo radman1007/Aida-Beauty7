@@ -131,12 +131,42 @@
                             <div class="product-info">
                                 <div class="product-rating">
                                     <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
+                                        {% if post.stars|floatformat:0 == '1' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        {% endif %}
+                                        {% if post.stars|floatformat:0 == '2' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        {% endif %}
+                                        {% if post.stars|floatformat:0 == '3' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        {% endif %}
+                                        {% if post.stars|floatformat:0 == '4' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        {% endif %}
+                                        {% if post.stars|floatformat:0 == '5' %}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        {% endif %}
+                                        </div>
                                     <div class="reviews">150 بررسی</div>
                                 </div>
                                 <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>

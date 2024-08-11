@@ -96,7 +96,7 @@
                                 {% endif %}
                             </ul>
 
-                            <p>{{ post.body|linebreaks|safe }}</p>
+                            <p>{{ post.body|safe|linebreaks }}</p>
                         </div>
 
                         <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -159,7 +159,7 @@
                     <div class="product-reviews-form-wrap">
                         <h4 class="product-form-title">بازپخش بگذارید</h4>
                         <div class="product-reviews-form">
-                            <form action="" method="POST">
+                            <form action="{% url "product_detail" post.id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-input-item">
                                     <textarea name="message" class="form-control" placeholder="بازخورد خود را وارد کنید"></textarea>
@@ -248,11 +248,41 @@
                                     <div class="product-info">
                                         <div class="product-rating">
                                             <div class="rating">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
+                                                {% if post.stars|floatformat:0 == '1' %}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                {% endif %}
+                                                {% if post.stars|floatformat:0 == '2' %}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                {% endif %}
+                                                {% if post.stars|floatformat:0 == '3' %}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                {% endif %}
+                                                {% if post.stars|floatformat:0 == '4' %}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                {% endif %}
+                                                {% if post.stars|floatformat:0 == '5' %}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                {% endif %}
                                             </div>
                                             <div class="reviews">150 بررسی</div>
                                         </div>

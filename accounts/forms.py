@@ -1,22 +1,8 @@
-# from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-# from django.contrib.auth import get_user_model
-
-
-# class CustomUserCreationForm(UserCreationForm):
-#     class Meta:
-#         model = get_user_model()
-#         fields = ('email', 'username',)
-        
-        
-# class CustomUserChangeForm(UserChangeForm):
-#     class Meta:
-#         model = get_user_model()
-#         fields = ('email', 'username',)
-
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from .models import User
+from django.core import validators
 
 
 class UserCreationForm(forms.ModelForm):
@@ -63,3 +49,7 @@ class UserChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
     phone = forms.CharField()
     password = forms.CharField()
+    
+    
+class RegisterForm(forms.Form):
+    phone = forms.CharField(validators=[validators.MaxLengthValidator(12)])

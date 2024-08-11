@@ -84,11 +84,41 @@
                             <div class="product-info">
                                 <div class="product-rating">
                                     <div class="rating">
+                                    {% if post.stars|floatformat:0 == '1' %}
+                                        <i class="fa fa-star"></i>
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
+                                    {% endif %}
+                                    {% if post.stars|floatformat:0 == '2' %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    {% endif %}
+                                    {% if post.stars|floatformat:0 == '3' %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    {% endif %}
+                                    {% if post.stars|floatformat:0 == '4' %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    {% endif %}
+                                    {% if post.stars|floatformat:0 == '5' %}
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    {% endif %}
                                     </div>
                                     <div class="reviews">150 بررسی</div>
                                 </div>
@@ -176,11 +206,41 @@
                                     <h3 class="product-details-title">{{ post.title }}</h3>
                                     <div class="product-details-review mb-5">
                                         <div class="product-review-icon">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
+                                            {% if post.stars|floatformat:0 == '1' %}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            {% endif %}
+                                            {% if post.stars|floatformat:0 == '2' %}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            {% endif %}
+                                            {% if post.stars|floatformat:0 == '3' %}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            {% endif %}
+                                            {% if post.stars|floatformat:0 == '4' %}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            {% endif %}
+                                            {% if post.stars|floatformat:0 == '5' %}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            {% endif %}
                                         </div>
                                         <button type="button" class="product-review-show">150 بررسی</button>
                                     </div>

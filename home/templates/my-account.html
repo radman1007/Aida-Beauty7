@@ -103,38 +103,39 @@
                             <div class="myaccount-content">
                                 <h3>جزئیات حساب</h3>
                                 <div class="account-details-form">
-                                    <form action="" method="POST">
+                                    <form action="{% url "profile" %}" method="POST">
+                                        {% csrf_token %}
                                         <div class="single-input-item">
                                             <label for="display-name" class="required">نام کامل</label>
                                             <input name="fullname" type="text" id="display-name" />
                                         </div>
                                         <div class="single-input-item">
-                                            <label for="phone" class="required">شماره تلفن</label>
+                                            <label for="phone" class="required">شماره تلفن : حتما باید شماره تلفنی که باهاش ورود کردید رو وارد کنید.</label>
                                             <input name="phone" type="text" id="phone" />
                                         </div>
                                         <fieldset>
                                             <legend>تغییر رمز عبور</legend>
                                             <div class="single-input-item">
                                                 <label for="current-pwd" class="required">رمز عبور فعلی</label>
-                                                <input type="password" id="current-pwd" />
+                                                <input name="password" type="password" id="current-pwd" />
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="single-input-item">
                                                         <label for="new-pwd" class="required">رمز عبور جدید</label>
-                                                        <input name="password" type="password" id="new-pwd" />
+                                                        <input name="password1" type="password" id="new-pwd" />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="single-input-item">
                                                         <label for="confirm-pwd" class="required">رمز عبور را تایید کنید</label>
-                                                        <input type="password" id="confirm-pwd" />
+                                                        <input name="password2" type="password" id="confirm-pwd" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </fieldset>
                                         <div class="single-input-item">
-                                            <button class="check-btn sqr-btn">ذخیره تغییرات</button>
+                                            <button type="submit" class="check-btn sqr-btn">ذخیره تغییرات</button>
                                         </div>
                                     </form>
                                 </div>

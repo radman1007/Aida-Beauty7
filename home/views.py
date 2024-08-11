@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from article.models import Blog
 from product.models import Product
 from .forms import ContactForm, NewsForm
-from django.contrib.auth.decorators import login_required
 from .models import BaseCategory
+from django.db.models import Avg, Case, When, FloatField
 
 def index(request):
     forms = Blog.objects.all()
-    posts = Product.objects.all().order_by('-created')
+    posts = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
     top_nine = posts[:9]
     base_categories = BaseCategory.objects.all()
     if request.method == 'POST':
@@ -37,7 +37,3 @@ def contact(request):
         'form' : form
     }
     return render(request, "contact.html", context)
-
-@login_required()
-def profile(request):
-    return render(request, 'my-account.html')
