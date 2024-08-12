@@ -45,7 +45,7 @@ def profile(request):
         user = get_user_model().objects.filter(phone=phone).first()
         if user:
             if user!=request.user:
-                pass
+                return redirect('login')
             else:
                 if check_password(sent_password,prev_password):
                     if  password1 == password2:
