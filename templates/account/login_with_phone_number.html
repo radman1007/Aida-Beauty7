@@ -29,14 +29,19 @@
                 <div class="col-lg-6 mb-8">
                     <!--== Start Login Area Wrapper ==-->
                     <div class="my-account-item-wrap">
-                        <h3 class="title">فراموشی رمز عبور</h3>
+                        <h3 class="title">یکبار رمز</h3>
                         <div class="my-account-form">
-                            <form action="{% url "otp" %}" method="GET">
+                            <form action="{% url "otp" %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group mb-6">
                                     {{ form.phone.errors }}
                                     <label name="phone" for="login_username">شماره تلفن<sup>*</sup></label>
                                     <input name="phone" type="text" id="login_username">
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label name="otp" for="login_username">یکبار رمز<sup>*</sup></label>
+                                    <input name="otp" type="text" id="login_username">
                                 </div>
 
                                 <div class="form-group d-flex align-items-center mb-14">

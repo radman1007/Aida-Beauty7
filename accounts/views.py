@@ -77,7 +77,7 @@ def forgot_password(request):
 class ForgotPassword(generic.TemplateView):
     otps = dict()
 
-    def get(self, request, args, *kwargs):
+    def get(self, request, *args, **kwargs):
         phone_number = request.GET.get('phone')
         if phone_number==None:
             return redirect('forgot_password')
@@ -97,62 +97,34 @@ class ForgotPassword(generic.TemplateView):
         }
         try:
             answer = sms.verification({'receptor': phone_number, 'linenumber': '30005088','type': '1', 'template': 'AidaBeauty7', 'param1': otp})
-            answer = True
             if answer:
-                messages.success(request, _("A verification code sent to %s. Please enter the recieved code to continue." %phone_number))
-                return render(request, 'login_with_phone_number.html', context)
-            messages.error(request, _("A problem occured in sending message. Please try again in a few minutes."))
-            return redirect('account_login')
-        # except ConnectTimeout as error:
-            messages.error(request, _("A problem occured in sms message server. Please try again in a few minutes."))
-            messages.error(request, error)
-            return redirect('account_login')
-        # except SSLError as error:
-            messages.error(request, _("A problem occured which is related to SSL. Please check your VPN status or proxy settings!"))
-            messages.error(request, error)
-            return redirect('account_login')
-        except ConnectionError as error:
-            messages.error(request, _("A connection error occured. Please check your Internet!"))
-            messages.error(request, error)
-            return redirect('change_otp_number')
+                return render(request, 'account/login_with_phone_number.html', context)
+            return redirect('forgot_password')
+        except:
+            return redirect('forgot_password')
 
-    def post(self, request, args, *kwargs):
-        phone_number = request.POST.get('phone_number')
+    def post(self, request, *args, **kwargs):
+        phone_number = request.POST.get('phone')
         sent_otp = request.POST.get('otp')
         otps = ForgotPassword.otps
-        current_user = otps.get(phone_number) # اگه طرف شماره رو انگولک نکرده باشه از تو اچ تی ام ال
-        if current_user == None: # یعنی یا منقضی شده و یا طرف دستکاری کرده فرم رو با اچ تی ام ال
-            messages.error(request, _("OTP has been expired!"))
-            return redirect('account_login')
+        current_user = otps.get(phone_number)
+        if current_user == None:
+            return redirect('forgot_password')
         correct_otp = current_user.get('otp')
         username = current_user.get('username')
         try:
             del ForgotPassword.otps[phone_number]
-        except: # ممکنه اکسپایر شده باشه یا نباشه تو دیکشنری یا به هر دلیلی. به هر حال میگم ارور نده. سعی کن پاکش کنی. شد شد نشد نشد ولش کن😁
+        except:
             pass
         if correct_otp==sent_otp:
             try:
-                if username==None: # پس دفعه اول هست و میخواد اکانت بسازه
-                    random_username = phone_number 
-                    not_ok = get_user_model().objects.filter(username=random_username).first()
-                    while not_ok:
-                        random_username = phone_number+str(''.join(random.choices(string.ascii_letters+string.digits,k=random.randint(8, 10))))
-                        not_ok = get_user_model().objects.filter(username=random_username).first()
-                    new_user = get_user_model().objects.create(username=random_username, phone_number=phone_number)
-                    PhoneNumber.objects.create(user=new_user, phone_number=phone_number)
-                    login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
-                else: # قبلا حداقل یه بار وارد شده. پس اکانت داره
-                    user = get_user_model().objects.get(username=username)
+                if username==None:
+                    return redirect('forgot_password')
+                else:
+                    user = get_user_model().objects.get(phone=username)
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                    temp = PhoneNumber.objects.get(phone_number=phone_number)
-                    if temp.verified:
-                        messages.success(request, _("Welcome %s" %username))
-                        return redirect('homepage')
-                context = {'phone_number': phone_number}
-                messages.success(request, _("Successfull Login."))
-                return render(request, 'register_with_phone_number.html', context)
+                    return redirect('index')
             except:
-                pass
+                return redirect('forgot_password')
         else:
-            messages.error(request, _("Sorry. OTP is invalid!"))
-            return redirect('')
+            return redirect('forgot_password')
