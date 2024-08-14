@@ -88,9 +88,12 @@
                             </tr>
                             </tbody>
                         </table>
+                        {% if cart.get_total_price == 0 %}
+                        {% else %}
                         <div class="text-end">
                             <a href="{% url "checkout" %}" class="checkout-button">برای تسویه حساب اقدام کنید</a>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -322,7 +322,9 @@
         </ul>
         <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_price }} تومان</span></p>
         <a class="btn-total" href="{% url "cart" %}">مشاهده سبد خرید</a>
+        {% if cart %}
         <a class="btn-total" href="{% url "checkout" %}">پرداخت</a>
+        {% endif %}
     </div>
 </aside>
 <!--== End Aside Cart ==-->

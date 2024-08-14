@@ -20,7 +20,11 @@ def cart(request):
     return render(request, "cart.html", context)
 
 def checkout(request):
-    return render(request, "checkout.html")
+    cart = Cart(request)
+    context = {
+        'cart' : cart,
+    }
+    return render(request, "checkout.html", context)
 
 @require_POST
 def cart_add(request, product_id):
