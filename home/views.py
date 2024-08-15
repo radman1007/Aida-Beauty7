@@ -9,6 +9,7 @@ def index(request):
     forms = Blog.objects.all()
     posts = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
     top_nine = posts[:9]
+    after_nine = posts[9:12]
     base_categories = BaseCategory.objects.all()
     if request.method == 'POST':
         news = NewsForm(request.POST)
@@ -18,6 +19,7 @@ def index(request):
         'forms' : forms,
         'base_categories' : base_categories,
         'top_nine' : top_nine,
+        'after_nine' : after_nine,
     }
     return render(request, "index.html", context)
 
