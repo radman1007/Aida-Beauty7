@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
     phone = models.CharField(max_length=12, verbose_name="شماره تلفن", unique=True)
     fullname = models.CharField(max_length=255, verbose_name="نام کامل")
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False, verbose_name = 'آدمین')
+    is_admin = models.BooleanField(default=False, verbose_name = 'ادمین')
 
     objects = UserManager()
 
