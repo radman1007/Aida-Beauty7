@@ -52,4 +52,5 @@ class LoginForm(forms.Form):
     
     
 class RegisterForm(forms.Form):
-    phone = forms.CharField(validators=[validators.MaxLengthValidator(12)])
+    phone = forms.CharField()
+    password = forms.CharField()
