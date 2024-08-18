@@ -69,14 +69,14 @@
                                     <input name="phone" type="text" id="register_username">
                                 </div>
 
-                                {% comment %} <div class="form-group mb-6">
+                                <div class="form-group mb-6">
                                     <label for="register_pwsd">کلمه عبور <sup>*</sup></label>
-                                    <input type="password" id="register_pwsd">
-                                </div> {% endcomment %}
+                                    <input name="password" type="password" id="register_pwsd">
+                                </div>
 
                                 <div class="form-group">
                                     <p class="desc mb-4">از داده های شخصی شما برای پشتیبانی از تجربه شما در سراسر این وب سایت، مدیریت دسترسی به حساب شما و سایر اهدافی که در خط مشی رازداری ما توضیح داده شده است استفاده می شود.</p>
-                                    <a class="btn" href="{% url "profile" %}">ثبت نام</a>
+                                    <button type="submit" class="btn">ثبت نام</button>
                                 </div>
                             </form>
                         </div>
