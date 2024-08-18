@@ -36,7 +36,7 @@ class UserLoginView(View):
         return render(request, 'account/login.html', {'form' : form})
 
 
-class RegisterView(View):
+class UserRegisterView(View):
     def get(self, request):
         form = RegisterForm()
         return render(request, 'account/login.html', {'form' : form})
