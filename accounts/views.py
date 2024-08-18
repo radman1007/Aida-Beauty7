@@ -4,12 +4,12 @@ from django.views import View
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth import get_user_model
 from django.views import generic
 from django.contrib import messages
 from django.utils.translation import gettext as _
-import random, string
+import random
 import ghasedakpack
 from config.radman import *
 sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
@@ -38,10 +38,11 @@ class UserLoginView(View):
 
 class UserRegisterView(View):        
     def post(self, request):
-        user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
-        user.save()
-        user = authenticate(username=request.POST['phone'], password=request.POST['password'])
-        if user is not None:
+        if len(request.POST["password"]) >= 8:
+            user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
+            user.save()
+            user = authenticate(username=request.POST['phone'], password=request.POST['password'])
+            if user is not None:
                 login(request, user)
                 return redirect('profile')
         return render(request, 'account/login.html')
