@@ -49,8 +49,3 @@ class UserChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
     phone = forms.CharField()
     password = forms.CharField()
-    
-    
-class RegisterForm(forms.Form):
-    phone = forms.CharField()
-    password = forms.CharField()

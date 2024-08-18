@@ -62,7 +62,7 @@
                     <div class="my-account-item-wrap">
                         <h3 class="title">ثبت نام</h3>
                         <div class="my-account-form">
-                            <form action="" method="POST">
+                            <form action="{% url "signup" %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group mb-6">
                                     <label for="register_username">شماره تلفن<sup>*</sup></label>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm
 from django.views import View
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password, check_password
@@ -36,10 +36,15 @@ class UserLoginView(View):
         return render(request, 'account/login.html', {'form' : form})
 
 
-class UserRegisterView(View):
-    def get(self, request):
-        form = RegisterForm()
-        return render(request, 'account/login.html', {'form' : form})
+class UserRegisterView(View):        
+    def post(self, request):
+        user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
+        user.save()
+        user = authenticate(username=request.POST['phone'], password=request.POST['password'])
+        if user is not None:
+                login(request, user)
+                return redirect('profile')
+        return render(request, 'account/login.html')
 
 @login_required()
 def profile(request):
