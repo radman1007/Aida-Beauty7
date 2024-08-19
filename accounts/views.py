@@ -43,9 +43,9 @@ class UserRegisterView(View):
                 user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
                 user.save()
                 user = authenticate(username=request.POST['phone'], password=request.POST['password'])
-            if user is not None:
-                login(request, user)
-                return redirect('profile')
+                if user is not None:
+                    login(request, user)
+                    return redirect('profile')
         return render(request, 'account/login.html')
 
 @login_required()
