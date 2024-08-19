@@ -39,9 +39,10 @@ class UserLoginView(View):
 class UserRegisterView(View):        
     def post(self, request):
         if len(request.POST["password"]) >= 8:
-            user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
-            user.save()
-            user = authenticate(username=request.POST['phone'], password=request.POST['password'])
+            if len(get_user_model().objects.filter(phone=request.POST["phone"])) == 0:        
+                user = get_user_model().objects.create_user(request.POST["phone"], request.POST["password"])
+                user.save()
+                user = authenticate(username=request.POST['phone'], password=request.POST['password'])
             if user is not None:
                 login(request, user)
                 return redirect('profile')
