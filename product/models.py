@@ -27,6 +27,18 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'محصول'
         verbose_name_plural = 'محصولات'
+        
+        
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images", verbose_name="محصول")
+    image = models.ImageField(null=True,blank=True, verbose_name="عکس")
+    
+    def __str__(self):
+        return self.product
+        
+    class Meta:
+        verbose_name = 'عکس'
+        verbose_name_plural = 'عکس ها'
     
 
 class Comment(models.Model):
