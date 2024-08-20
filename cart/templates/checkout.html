@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block title %}فرایند خرید{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -167,7 +168,7 @@
                                 {% for item in cart %}
                                 <tr class="cart-item">
                                     <td class="product-name"> {{ item.product_obj.title }} <span class="product-quantity">× {{ item.quantity }}</span></td>
-                                    <td class="product-total">{{ item.product_obj.price }} تومان</td>
+                                    <td class="product-total">{{ item.product_obj.price|intcomma:False }} تومان</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -178,7 +179,7 @@
                                 </tr> {% endcomment %}
                                 <tr class="order-total">
                                     <th>جمع </th>
-                                    <td>{{ cart.get_total_price }} تومان</td>
+                                    <td>{{ cart.get_total_price|intcomma:False }} تومان</td>
                                 </tr>
                                 </tfoot>
                             </table>

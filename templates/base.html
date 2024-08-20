@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -316,11 +317,11 @@
                     <img src="{{ item.product_obj.image.url }}" width="68" height="84" alt="Image">
                     <span class="product-title">{{ item.product_obj.title }}</span>
                 </a>
-                <span class="product-price">{{ item.quantity }} × {{ item.product_obj.price }} تومان</span>
+                <span class="product-price">{{ item.quantity }} × {{ item.product_obj.price|intcomma:False }} تومان</span>
             </li>
             {% endfor %}
         </ul>
-        <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_price }} تومان</span></p>
+        <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_price|intcomma:False }} تومان</span></p>
         <a class="btn-total" href="{% url "cart" %}">مشاهده سبد خرید</a>
         {% if cart %}
         <a class="btn-total" href="{% url "checkout" %}">پرداخت</a>
