@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .cart import Cart
 from django.contrib import messages
 from product.models import Product
-from .forms import AddToCartProductForm
+from .forms import AddToCartProductForm, OrderForm
 from django.views.decorators.http import require_POST
 
 def cart(request):
@@ -23,6 +23,7 @@ def checkout(request):
     cart = Cart(request)
     context = {
         'cart' : cart,
+        'form' : OrderForm(),
     }
     return render(request, "checkout.html", context)
 

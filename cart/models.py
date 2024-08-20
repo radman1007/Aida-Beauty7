@@ -9,6 +9,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=100 ,verbose_name="نام خانوادگی")
     city = models.CharField(max_length=100 ,verbose_name="شهر")
     address = models.CharField(max_length=700 ,verbose_name="آدرس")
+    code = models.CharField(max_length=11, verbose_name="کد پستی")
     note = models.TextField(blank=True, null=True, verbose_name="متن خرید")
     paid = models.BooleanField(default=False ,verbose_name="وضعیت پرداخت")
     created = models.DateTimeField(auto_now_add=True ,verbose_name="زمان خرید")
