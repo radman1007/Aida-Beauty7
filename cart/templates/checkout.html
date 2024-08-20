@@ -57,7 +57,8 @@
                     <div class="checkout-billing-details-wrap">
                         <h2 class="title">جزئیات صورتحساب</h2>
                         <div class="billing-form-wrap">
-                            <form action="" method="POST">
+                            <form action="{% url "checkout" %}" method="POST">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -74,7 +75,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="street-address">آدرس خیابان<abbr class="required" title="required">*</abbr></label>
-                                            <input name="address" id="street-address" type="text" class="form-control" placeholder="شماره خانه و نام خیابان">
+                                            <input name="address" id="street-address" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -86,54 +87,18 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-
                                             <label for="pz-code">کد پستی<abbr class="required" title="required">*</abbr></label>
                                             <input name="code" id="pz-code" type="text" class="form-control">
                                         </div>
                                     </div>
-                                    {% comment %} <div id="CheckoutBillingAccordion2" class="col-md-12">
-                                        <div id="CheckoutTwo" class="collapse" data-bs-parent="#CheckoutBillingAccordion2">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="f_name2">نام کوچک <abbr class="required" title="required">*</abbr></label>
-                                                        <input name="" id="f_name2" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="l_name2">نام خانوادگی <abbr class="required" title="required">*</abbr></label>
-                                                        <input id="l_name2" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="street-address2-3">آدرس خیابان <abbr class="required" title="required">*</abbr></label>
-                                                        <input id="street-address2-3" type="text" class="form-control" placeholder="شماره خانه و نام خیابان">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="town3">شهر / استان <abbr class="required" title="required">*</abbr></label>
-                                                        <input id="town3" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="pz-code">کد پستی<abbr class="required" title="required">*</abbr></label>
-                                                        <input id="pz-code2" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> {% endcomment %}
                                     <div class="col-md-12">
                                         <div class="form-group mb-0">
                                             <label for="order-notes">یادداشت (اختیاری)</label>
-                                            <textarea name="" id="order-notes" class="form-control" placeholder="نکاتی در مورد سفارش شما، به عنوان مثال یادداشت های ویژه برای تحویل"></textarea>
+                                            <textarea name="note" id="order-notes" class="form-control" placeholder="نکاتی در مورد سفارش شما، به عنوان مثال یادداشت های ویژه برای تحویل"></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" class="btn-place-order">ثبت سفارش</button>
                             </form>
                         </div>
                     </div>
@@ -165,7 +130,7 @@
                                     <td>نرخ ثابت: ۴۰۰۰۰ تومان</td>
                                 </tr> {% endcomment %}
                                 <tr class="order-total">
-                                    <th>جمع </th>
+                                    <th>جمع</th>
                                     <td>{{ cart.get_total_price|intcomma:False }} تومان</td>
                                 </tr>
                                 </tfoot>

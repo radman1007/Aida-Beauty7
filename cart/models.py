@@ -16,7 +16,7 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="زمان بروزرسانی")
 
     def __str__(self):
-        return self.id
+        return f"{self.id}"
     
     class Meta:
         verbose_name = 'سفارش'
@@ -30,7 +30,7 @@ class OrderItem(models.Model):
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
     
     def __str__(self):
-        return self.product
+        return f"{self.product}"
     
     class Meta:
         verbose_name = 'موارد سفارش'

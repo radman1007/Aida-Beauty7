@@ -4,6 +4,8 @@ from django.contrib import messages
 from product.models import Product
 from .forms import AddToCartProductForm, OrderForm
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+from .models import OrderItem
 
 def cart(request):
     cart = Cart(request)
@@ -19,8 +21,33 @@ def cart(request):
     }
     return render(request, "cart.html", context)
 
+@login_required()
 def checkout(request):
     cart = Cart(request)
+    order_form = OrderForm()
+    if len(cart) == 0:
+        messages.warning(request, 'سبد خرید شما خالی است.')
+        return redirect('cart')
+    if request.method == 'POST':
+        order_form = OrderForm(request.POST)
+        if order_form.is_valid():
+            order_obj = order_form.save(commit=False)
+            order_obj.user = request.user
+            order_obj.save()
+            for item in cart:
+                product = item['product_obj']
+                OrderItem.objects.create(
+                    order = order_obj,
+                    product = product,
+                    quantity = item['quantity'],
+                    price = product.price,
+                )
+            cart.clear()
+            messages.success(request, 'سفارش شما با موفقیت ثبت شد.')
+            if len(request.user.fullname) == 0:
+                request.user.fullname = f"{order_obj.first_name} {order_obj.last_name}"
+                request.user.save()
+            return redirect('index')
     context = {
         'cart' : cart,
         'form' : OrderForm(),
