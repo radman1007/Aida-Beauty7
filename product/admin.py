@@ -11,7 +11,7 @@ class CommentsInline(admin.StackedInline):
     
 class ProductImageInline(admin.StackedInline):
     model = ProductImage
-    fields = ['image']
+    fields = ['image', 'number']
     extra = 1
     
 

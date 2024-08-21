@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Discount
 from jalali_date.admin import ModelAdminJalaliMixin
 
 
@@ -20,3 +20,8 @@ class OrderAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ['order', 'product', 'quantity', 'price']
+    
+    
+@admin.register(Discount)
+class DiscountAdmin(admin.ModelAdmin):
+    list_display = ['coupon_code', 'amount', 'limit', 'active']

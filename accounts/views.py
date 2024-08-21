@@ -12,8 +12,9 @@ from django.utils.translation import gettext as _
 import random
 import ghasedakpack
 from config.radman import *
-sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
+from cart.models import Order, OrderItem
 
+sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
 
 
 class UserLoginView(View):
@@ -28,6 +29,7 @@ class UserLoginView(View):
             user = authenticate(username=cd['phone'], password=cd['password'])
             if user is not None:
                 login(request, user)
+                messages.success(request, "با موفقیت وارد شدید.")
                 return redirect('index')
             else:
                 form.add_error("phone", "شماره و رمز عبور را چک کنید")
@@ -45,11 +47,13 @@ class UserRegisterView(View):
                 user = authenticate(username=request.POST['phone'], password=request.POST['password'])
                 if user is not None:
                     login(request, user)
+                    messages.success(request, "با موفقیت وارد شدید.")
                     return redirect('profile')
         return render(request, 'account/login.html')
 
 @login_required()
 def profile(request):
+    orders = Order.objects.filter(user=request.user).prefetch_related('items')
     if request.method == 'POST':
         fullname=request.POST.get('fullname')
         phone=request.POST.get('phone')
@@ -74,8 +78,10 @@ def profile(request):
                         if len(fullname) >= 1:
                             user.fullname=fullname
                             user.save()
-                            
-    return render(request, 'my-account.html')
+    context = {
+        'orders' : orders,
+    }
+    return render(request, 'my-account.html', context)
 
 
 def forgot_password(request):

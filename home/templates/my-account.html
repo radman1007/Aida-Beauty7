@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load jalali_tags %}
 {% block title %}پروفایل{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -30,9 +31,9 @@
                     <div class="my-account-tab-menu nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="dashboad-tab" data-bs-toggle="tab" data-bs-target="#dashboad" type="button" role="tab" aria-controls="dashboad" aria-selected="true">داشبورد</button>
                         <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false"> سفارشات</button>
-                        <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">نشانی</button>
+                        <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">نشانی ها</button>
                         <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">جزئیات حساب</button>
-                        <form class="" action="{% url "logout" %}" method="POST">{% csrf_token %}<button class="nav-link" type="submit">خروج</button></form>
+                        <form class="nav-link" action="{% url "logout" %}" method="POST">{% csrf_token %}<button style="background-color: white; border:none; border-radius:200px;" type="submit">خروج</button></form>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8">
@@ -52,36 +53,42 @@
                                 <div class="myaccount-table table-responsive text-center">
                                     <table class="table table-bordered">
                                         <thead class="thead-light">
+                                        {% if orders %}
                                         <tr>
                                             <th>سفارشات</th>
                                             <th>تاریخ</th>
-                                            <th>وضعیت</th>
-                                            <th>جمع</th>
-                                            <th>عمل</th>
+                                            <th>وضعیت پرداخت</th>
+                                            <th>محصـولات</th>
+                                            <th>تعداد</th>
                                         </tr>
+                                        {% else %}
+                                        سفارشی تا به الان ثبت نکردید.
+                                        {% endif %}
                                         </thead>
                                         <tbody>
+                                        {% for order in orders %}
                                         <tr>
-                                            <td>1</td>
-                                            <td>1402 - 08 - 17</td>
-                                            <td>انتظار</td>
-                                            <td>3000 تومان</td>
-                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
+                                            <td>{{ order.id }}</td>
+                                            <td>{{ order.created|to_jalali:'%Y/%m/%d' }}</td>
+                                            {% if order.paid %}
+                                            <td>پرداخت شده</td>
+                                            {% else %}
+                                            <td>پرداخت نشده</td>
+                                            {% endif %}
+                                            <td>
+                                            {% for item in order.items.all %}
+                                                <a href="{{ item.product.get_absolute_url }}">{{ item.product }}</a>
+                                                <br>
+                                            {% endfor %}
+                                            </td>
+                                            <td>
+                                            {% for item in order.items.all %}
+                                                {{ item.quantity }}
+                                                <br>
+                                            {% endfor %}
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>1402 - 08 - 17</td>
-                                            <td>انتظار</td>
-                                            <td>3200 تومان</td>
-                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>1402 - 08 - 17</td>
-                                            <td>انتظار</td>
-                                            <td>9900 تومان</td>
-                                            <td><a href="{% url "cart" %}" class="check-btn sqr-btn ">نمایش</a></td>
-                                        </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -89,14 +96,19 @@
                         </div>
                         <div class="tab-pane fade" id="address-edit" role="tabpanel" aria-labelledby="address-edit-tab">
                             <div class="myaccount-content">
-                                <h3>آدرس قبض</h3>
+                                <h3>نشانی ها</h3>
+                                {% if orders %}
+                                {% for order in orders %}
                                 <address>
-                                    <p><strong>الکس توتونی</strong></p>
-                                    <p>خیابان بازار 1355، سوئیت  <br>
-                                        خیابان ولیعصر</p>
-                                    <p>تلفن همراه: (123) 456-7890</p>
+                                    <p><strong>{{ order.first_name }} {{ order.last_name }}</strong></p>
+                                    <p> شهر/استان: {{ order.city }}<br>
+                                        آدرس خیابان: {{ order.address }}</p>
+                                    <p> کد پستی: {{ order.code }} </p>
                                 </address>
-                                <a href="#/" class="check-btn sqr-btn"><i class="fa fa-edit"></i>  ویرایش آدرس</a>
+                                {% endfor %}
+                                {% else %}
+                                نشانی تا به الان ثبت نکردید.
+                                {% endif %}
                             </div>
                         </div>
                         <div class="tab-pane fade" id="account-info" role="tabpanel" aria-labelledby="account-info-tab">
@@ -107,7 +119,7 @@
                                         {% csrf_token %}
                                         <div class="single-input-item">
                                             <label for="display-name" class="required">نام کامل</label>
-                                            <input name="fullname" type="text" id="display-name" />
+                                            <input {% if request.user.fullname %}value="{{ request.user.fullname }}"{% endif %} name="fullname" type="text" id="display-name" />
                                         </div>
                                         <div class="single-input-item">
                                             <label for="phone" class="required">شماره تلفن : حتما باید شماره تلفنی که باهاش ورود کردید رو وارد کنید.</label>

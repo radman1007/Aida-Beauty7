@@ -2,6 +2,12 @@
 {% load static %}
 {% load humanize %}
 {% block title %}جزئیات محصـول{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static "files/css/slider.css" %}">
+{% endblock css %}
+{% block js %}
+<script src="{% static "files/js/app.js" %}"></script>
+{% endblock js %}
 {% block _body_ %}
 <main class="main-content">
 
@@ -32,8 +38,24 @@
             <div class="row product-details">
                 <div class="col-lg-6">
                     <div class="product-details-thumb">
-                        {% if post.image %}
-                            <img src="{{ post.image.url }}" width="570" height="693" alt="Image">
+                        {% if images %}
+                        <div class="container">
+                            {% for image in images %}
+                            <div class="mySlides">
+                              <img src="{{ image.image.url }}" style="width:100%">
+                            </div>
+                            {% endfor %}
+                          
+                            <div class="row images-div">
+                                {% for image in images %}
+                                <div class="column">
+                                  <img class="demo cursor" src="{{ image.image.url }}" style="width:100%" height="600" onclick="currentSlide({{image.number}})" alt="Image">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <img src="{{ post.image.url }}" width="570" height="693" alt="Image">
                         {% endif %}
                         {% if post.available == False %}
                         <span class="flag-new">ناموجود</span>

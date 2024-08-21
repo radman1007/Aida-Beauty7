@@ -30,6 +30,7 @@ def product(request):
 
 def product_detail(request, pk):
     post = get_object_or_404(Product, pk=pk)
+    images = post.images.all()
     comments = post.comments.filter(publish=True)
     forms = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
     others = forms[:3]
@@ -43,6 +44,7 @@ def product_detail(request, pk):
             print(comment_form.errors)
     context = {
         'post' : post,
+        'images' : images,
         'comments' : comments,
         'others' : others,
     }

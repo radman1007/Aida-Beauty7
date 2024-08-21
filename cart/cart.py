@@ -18,17 +18,17 @@ class Cart:
             self.cart[product_id]={'quantity': 0}
         if replace_current_quantity:
             self.cart[product_id]['quantity'] = quantity
-            messages.success(self.request, _('Product successfully updated'))
+            messages.success(self.request, _('سبد خرید بروزرسانی شد.'))
         else:
             self.cart[product_id]['quantity'] += quantity
-            messages.success(self.request, _('Product successfully added to cart'))
+            messages.success(self.request, _('محصول با موفقیت به سبد خرید اضافه شد.'))
         self.save()
             
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
-            messages.success(self.request, _('Product successfully removed from cart'))
+            messages.success(self.request, _('محصول با موفقیت از سبد خرید حذف شد.'))
             self.save()
             
     def save(self):
@@ -58,3 +58,6 @@ class Cart:
         if self.cart:
             return False
         return True
+    
+    def get_one_obj_price(self):
+        return sum([item['quantity'] * item['product_obj'].price for item in self.cart.values()])

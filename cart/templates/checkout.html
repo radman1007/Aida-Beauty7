@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+{% load math_template_tags %}
 {% block title %}فرایند خرید{% endblock title %}
 {% block _body_ %}
 <main class="main-content">
@@ -32,15 +33,15 @@
                             <div class="card-body">
                                 <div class="apply-coupon-wrap">
                                     <p>اگر کد تخفیف دارید، لطفاً آن را در زیر اعمال کنید.</p>
-                                    <form action="#" method="post">
+                                    <form action="{% url "checkout" %}" method="GET">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Coupon code">
+                                                    <input name="coupon_code" class="form-control" type="text" placeholder="کد تخفیف">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="button" class="btn-coupon">درخواست کوپن</button>
+                                                <button type="submit" class="btn-coupon">درخواست تخفیف</button>
                                             </div>
                                         </div>
                                     </form>
@@ -57,7 +58,7 @@
                     <div class="checkout-billing-details-wrap">
                         <h2 class="title">جزئیات صورتحساب</h2>
                         <div class="billing-form-wrap">
-                            <form action="{% url "checkout" %}" method="POST">
+                            <form action="{% url "checkout" %}" method="POST" id="checkout_form">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -98,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn-place-order">ثبت سفارش</button>
+                                {% comment %} <button type="submit" class="btn-place-order">ثبت سفارش</button> {% endcomment %}
                             </form>
                         </div>
                     </div>
@@ -113,7 +114,7 @@
                                 <thead>
                                 <tr>
                                     <th class="product-name">محصول</th>
-                                    <th class="product-total">جمع</th>
+                                    <th class="product-total">قیمت</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-body">
@@ -129,9 +130,19 @@
                                     <th>ارسال از طریق پست</th>
                                     <td>نرخ ثابت: ۴۰۰۰۰ تومان</td>
                                 </tr> {% endcomment %}
+                                {% if discount_amount %}
                                 <tr class="order-total">
-                                    <th>جمع</th>
+                                    <th>مقدار تخفیف</th>
+                                    <td>{{ discount_amount|multiply:-1|intcomma:False }} تومان</td>
+                                </tr>
+                                {% endif %}
+                                <tr class="order-total">
+                                    <th>جمع کل</th>
+                                    {% if discount_amount %}
+                                    <td>{{ cart.get_total_price|add:discount_amount|intcomma:False }} تومان</td>
+                                    {% else %}
                                     <td>{{ cart.get_total_price|intcomma:False }} تومان</td>
+                                    {% endif %}
                                 </tr>
                                 </tfoot>
                             </table>
@@ -149,13 +160,7 @@
                                     </div>
                                 </div>
                                 <p class="p-text">اطلاعات شخصی شما برای پردازش سفارش شما، پشتیبانی از تجربه شما در سراسر این وب سایت و برای اهداف دیگری که در ما توضیح داده شده است، استفاده خواهد شد <a href="#/">سیاست حفظ حریم خصوصی.</a></p>
-                                <div class="agree-policy">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="privacy" class="custom-control-input visually-hidden">
-                                        <label for="privacy" class="custom-control-label">من شرایط و ضوابط وب سایت را خوانده ام و با آن موافقم <span class="required">*</span></label>
-                                    </div>
-                                </div>
-                                <a href="" class="btn-place-order">ثبت سفارش</a>
+                                <button form="checkout_form" type="submit" class="btn-place-order">ثبت سفارش</button>
                             </div>
                         </div>
                     </div>

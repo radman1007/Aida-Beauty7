@@ -30,11 +30,20 @@ class Product(models.Model):
         
         
 class ProductImage(models.Model):
+    NUMBER_BOX = {
+        '1' : 1,
+        '2' : 2,
+        '3' : 3,
+        '4' : 4,
+        '5' : 5,
+        '6' : 6,
+    }
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images", verbose_name="محصول")
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
+    number = models.CharField(max_length=2, choices=NUMBER_BOX, verbose_name="عدد عکس")
     
     def __str__(self):
-        return self.product
+        return self.product.title
         
     class Meta:
         verbose_name = 'عکس'

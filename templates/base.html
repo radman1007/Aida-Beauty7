@@ -35,6 +35,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{% static "files/css/style.min.css" %}">
+    {% block css %}{% endblock css %}
 
 </head>
 
@@ -131,7 +132,39 @@
     </header>
     <!--== End Header Wrapper ==-->
 
-   {% block _body_ %}{% endblock _body_ %}
+    <style>
+        .alert {
+          padding: 20px;
+          background-color: #F08080  ;
+          color: white;
+        }
+        
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        
+        .closebtn:hover {
+          color: black;
+        }
+    </style>
+
+    {% if messages %}
+    {% for message in messages %}
+    <br>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% block _body_ %}{% endblock _body_ %}
 
 <!--== Start News Letter Area Wrapper ==-->
 
@@ -147,7 +180,7 @@
             <div class="newsletter-form">
                 <form action="{% url "index" %}" method='POST'>
                     {% csrf_token %}
-                    <input name="email" type="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                    <input name="email" type="email" class="form-control" placeholder=" ایمیل خود را وارد کنید">
                     <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
                 </form>
             </div>
@@ -180,10 +213,11 @@
                             <li><a href="{% url "blog" %}">وبلاگ</a></li>
                             <li><a href="{% url "about" %}">درباره ما</a></li>
                             <li><a href="{% url "contact" %}">مخاطب</a></li>
-                            <li><a href="{% url "login" %}">ورود</a></li>
                             <li><a href="{% url "product" %}">فروشگاه</a></li>
                             {% if user.is_authenticated %}
                             <li><a href="{% url "profile" %}">اکانت من</a></li>
+                            {% else %}
+                            <li><a href="{% url "login" %}">ورود</a></li>
                             {% endif %}
                             <li><a href="{% url "faq" %}">سوالات متداول</a></li>
                         </ul>
@@ -376,6 +410,7 @@
 
 <!-- Custom Main JS -->
 <script src="{% static "files/js/main.js" %}"></script>
+{% block js %}{% endblock js %}
 
 </body>
 

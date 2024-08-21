@@ -5,7 +5,7 @@ from product.models import Product
 from .forms import AddToCartProductForm, OrderForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .models import OrderItem
+from .models import OrderItem, Discount
 
 def cart(request):
     cart = Cart(request)
@@ -25,10 +25,26 @@ def cart(request):
 def checkout(request):
     cart = Cart(request)
     order_form = OrderForm()
+    context = {}
     if len(cart) == 0:
         messages.warning(request, 'سبد خرید شما خالی است.')
         return redirect('cart')
-    if request.method == 'POST':
+    if request.method == 'GET':
+        coupon_code = request.GET.get('coupon_code')
+        if coupon_code != None:
+            discount = Discount.objects.filter(coupon_code=coupon_code).first()
+            if discount == None:
+                messages.warning(request, "این کد معتبر نیست.")
+            else:
+                if discount.active and discount.limit > 0:
+                    discount_amount = discount.amount
+                    context.update({
+                        'discount_amount' : -discount_amount,
+                    })
+                    messages.success(request, "کد تخفیف اعمال شد.")
+                else:
+                    messages.warning(request, "این کد دیگر قابل استفاده نیست.")
+    elif request.method == 'POST':
         order_form = OrderForm(request.POST)
         if order_form.is_valid():
             order_obj = order_form.save(commit=False)
@@ -48,10 +64,10 @@ def checkout(request):
                 request.user.fullname = f"{order_obj.first_name} {order_obj.last_name}"
                 request.user.save()
             return redirect('index')
-    context = {
+    context.update({
         'cart' : cart,
         'form' : OrderForm(),
-    }
+    })
     return render(request, "checkout.html", context)
 
 @require_POST
