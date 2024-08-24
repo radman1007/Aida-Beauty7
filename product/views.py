@@ -51,7 +51,7 @@ def product_detail(request, pk):
     return render(request, "product-detail.html", context)
 
 def product_filter(request):
-    categories = Category.objects.all()
+    base_categories = BaseCategory.objects.all()
     posts = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
     if request.method == 'POST':
         search_query = request.POST['search_query']
@@ -60,11 +60,20 @@ def product_filter(request):
             context = {
                 'posts' : posts,
                 'query' : search_query,
-                'categories' : categories,
+                'categories' : base_categories,
+                }
+            return render(request, 'product-filter.html', context)
+    if request.method == 'GET':
+        search_category = request.GET.get('search_category')
+        if search_category != None:
+            posts = Product.objects.filter(category__name__in=[search_category])
+            context = {
+                'posts' : posts,
+                'categories' : base_categories,
                 }
             return render(request, 'product-filter.html', context)
     context = {
         'posts' : posts,
-        'categories' : categories,
+        'categories' : base_categories,
     }
     return render(request, "product-filter.html", context)

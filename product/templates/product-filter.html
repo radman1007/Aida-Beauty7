@@ -126,9 +126,11 @@
                         <div class="product-widget mb-0">
                             <h4 class="product-widget-title">برچسب های محبوب</h4>
                             <ul class="product-widget-tags">
-                                {% for categorie in categories %}
-                                    <li><a href="{% url "blog" %}">{{ categorie.title }}</a></li>
-                                {% endfor %}
+                                <form action="{% url "product_filter" %}" method="GET">
+                                    {% for categorie in categories %}
+                                    <li><input name="search_category" type="submit" value="{{ categorie.name }}"></li>
+                                    {% endfor %}
+                                </form>
                             </ul>
                         </div>
                     </div>
