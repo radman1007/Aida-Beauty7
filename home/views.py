@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from article.models import Blog
 from product.models import Product
 from .forms import ContactForm, NewsForm
-from .models import BaseCategory
+from .models import BaseCategory, SliderImage
 from django.db.models import Avg, Case, When, FloatField
+from django.contrib import messages
 
 def index(request):
+    sliders = SliderImage.objects.all()
     forms = Blog.objects.all()
     posts = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
     top_nine = posts[:9]
@@ -16,6 +18,7 @@ def index(request):
         if news.is_valid():
             news.save()
     context = {
+        'sliders' : sliders,
         'forms' : forms,
         'base_categories' : base_categories,
         'top_nine' : top_nine,
@@ -34,6 +37,7 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'پیام شما یا موفقیت ارسال شد.')
     form = ContactForm()
     context = {
         'form' : form

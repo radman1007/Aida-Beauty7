@@ -9,14 +9,15 @@
         <section class="hero-two-slider-area position-relative">
             <div class="swiper hero-two-slider-container">
                 <div class="swiper-wrapper">
+                    {% for slider in sliders %}
                     <div class="swiper-slide hero-two-slide-item">
                         <div class="container">
                             <div class="row align-items-center position-relative">
                                 <div class="col-12 col-md-6">
                                     <div class="hero-two-slide-content">
                                         <div class="hero-two-slide-text-img"><img src="{% static "files/images/slider/text-light.webp" %}" width="427" height="232" alt="Image"></div>
-                                        <h2 class="hero-two-slide-title">کـرم ضـد پیـری</h2>
-                                        <p class="hero-two-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود.</p>
+                                        <h2 class="hero-two-slide-title">{{ slider.title }}</h2>
+                                        <p class="hero-two-slide-desc">{{ slider.body }}</p>
                                         <div class="hero-two-slide-meta">
                                             <a class="btn btn-border-primary" href="{% url "product" %}">هم اکنون خریداری کنید</a>
                                             <a class="ht-popup-video" data-fancybox data-type="iframe" href="https://player.vimeo.com/video/172601404?autoplay=1">
@@ -28,37 +29,13 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="hero-two-slide-thumb">
-                                        <img src="{% static "files/images/slider/slider3.webp" %}" width="690" height="690" alt="Image">
+                                        <img src="{{ slider.image.url }}" width="690" height="690" alt="Image">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide hero-two-slide-item">
-                        <div class="container">
-                            <div class="row align-items-center position-relative">
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-two-slide-content">
-                                        <div class="hero-two-slide-text-img"><img src="{% static "files/images/slider/text-light.webp" %}" width="427" height="232" alt="Image"></div>
-                                        <h2 class="hero-two-slide-title">کـرم تمیـز تـازه</h2>
-                                        <p class="hero-two-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود.</p>
-                                        <div class="hero-two-slide-meta">
-                                            <a class="btn btn-border-primary" href="{% url "product" %}">هم اکنون خریداری کنید</a>
-                                            <a class="ht-popup-video" data-fancybox data-type="iframe" href="https://player.vimeo.com/video/172601404?autoplay=1">
-                                                <i class="fa fa-play icon"></i>
-                                                <span>الان تماشا کن</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-two-slide-thumb">
-                                        <img src="{% static "files/images/slider/slider4.webp" %}" width="690" height="690" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <!--== Add Pagination ==-->
                 <div class="hero-two-slider-pagination"></div>

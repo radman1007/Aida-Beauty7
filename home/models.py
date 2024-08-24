@@ -35,3 +35,16 @@ class News(models.Model):
     class Meta:
         verbose_name = 'ایمیل خبرنامه'
         verbose_name_plural = 'ایمیل های خبرنامه'
+        
+        
+class SliderImage(models.Model):
+    image = models.ImageField(null=True,blank=True, verbose_name="عکس")
+    title = models.CharField(max_length=255, verbose_name="سر تیتر")
+    body = models.TextField(verbose_name="توضیحات")
+    
+    def __str__(self):
+        return self.title
+     
+    class Meta:
+        verbose_name = 'اسلایدر'
+        verbose_name_plural = 'اسلایدر ها'

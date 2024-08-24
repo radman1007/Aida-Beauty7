@@ -57,9 +57,11 @@
                         <div class="blog-widget mb-0">
                             <h4 class="blog-widget-title">برچسب های محبوب</h4>
                             <ul class="blog-widget-tags">
-                                {% for categorie in categories %}
-                                    <li><a href="{% url "blog" %}">{{ categorie.title }}</a></li>
-                                {% endfor %}
+                                <form action="{% url "blog_filter" %}" method="GET">
+                                    {% for categorie in categories %}
+                                    <li><input name="search_category" type="submit" value="{{ categorie.title }}"></li>
+                                    {% endfor %}
+                                </form>
                             </ul>
                         </div>
                     </div>

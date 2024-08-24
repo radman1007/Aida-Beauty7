@@ -38,6 +38,8 @@ def checkout(request):
             else:
                 if discount.active and discount.limit > 0:
                     discount_amount = discount.amount
+                    discount.limit -= 1
+                    discount.save()
                     context.update({
                         'discount_amount' : -discount_amount,
                     })
@@ -88,7 +90,7 @@ def cart_add(request, product_id):
 def cart_clear(request):
     cart = Cart(request)
     if len(cart) == 0:
-        messages.warning(request, 'Your cart is empty')
+        messages.warning(request, 'سبد خرید شما خالی است.')
         return redirect('index')
     cart.clear()
     messages.success(request, '')

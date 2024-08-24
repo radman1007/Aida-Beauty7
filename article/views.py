@@ -27,6 +27,15 @@ def blog_filter(request):
                 'categories' : categories,
                 }
             return render(request, 'blog-filter.html', context)
+    if request.method == 'GET':
+        search_category = request.GET.get('search_category')
+        if search_category != None:
+            forms = Blog.objects.filter(category__title__in=[search_category])
+            context = {
+                'forms' : forms,
+                'categories' : categories,
+                }
+            return render(request, 'blog-filter.html', context)
     context = {
         'forms' : forms,
         'categories' : categories

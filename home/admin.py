@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Contact, BaseCategory, News
+from .models import Contact, BaseCategory, News, SliderImage
+
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
@@ -8,3 +9,8 @@ class ContactAdmin(admin.ModelAdmin):
     
 admin.site.register(BaseCategory)
 admin.site.register(News)
+
+
+@admin.register(SliderImage)
+class SliderImageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'body')
