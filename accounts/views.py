@@ -49,6 +49,10 @@ class UserRegisterView(View):
                     login(request, user)
                     messages.success(request, "با موفقیت وارد شدید.")
                     return redirect('profile')
+            else:
+                messages.warning(request, 'این شماره تلفن قبلا در سایت ثبت نام کرده است.')
+        else:
+            messages.warning(request, 'رمز عبور باید بیشتر از ۸ کاراکتر باشد.')
         return render(request, 'account/login.html')
 
 @login_required()
