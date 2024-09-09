@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Product, Comment, ProductImage
 from jalali_date.admin import ModelAdminJalaliMixin
+from jalali_date import datetime2jalali
 
 
 class CommentsInline(admin.StackedInline):
@@ -17,12 +18,15 @@ class ProductImageInline(admin.StackedInline):
 
 @admin.register(Product)
 class ProductAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
-    list_display = ('title', 'price', 'available', 'created')
+    list_display = ('title', 'price', 'available', 'jcreated')
     ordering = ('-created',)
     inlines = [
         ProductImageInline,
         CommentsInline,
     ]
+    @admin.display(description='زمان انتشار')
+    def jcreated(self, obj):
+        return datetime2jalali(obj.created).strftime('%d %b %Y')
     
     
 @admin.register(Comment)
