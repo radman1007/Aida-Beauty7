@@ -20,6 +20,7 @@ class ProductImageInline(admin.StackedInline):
 class ProductAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ('title', 'price', 'available', 'jcreated')
     ordering = ('-created',)
+    search_fields = ['title']
     inlines = [
         ProductImageInline,
         CommentsInline,
@@ -32,3 +33,4 @@ class ProductAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'message', 'star')
+    autocomplete_fields = ['product']
