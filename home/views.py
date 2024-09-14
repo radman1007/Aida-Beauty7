@@ -38,6 +38,7 @@ def contact(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'پیام شما یا موفقیت ارسال شد.')
+            return redirect('index')
     form = ContactForm()
     context = {
         'form' : form

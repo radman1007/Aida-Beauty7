@@ -14,7 +14,8 @@
                     </div>
                     <!--== Start Contact Form ==-->
                     <div class="contact-form">
-                        <form id="contact-form" action="{% url "contact" %}" method="POST">
+                        {% comment %} id="contact-form"" {% endcomment %}
+                        <form action="{% url "contact" %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
