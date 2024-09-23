@@ -11,7 +11,7 @@ def product(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
         if len(search_query) >= 1:
-            posts = Product.objects.filter(Q(title__icontains=search_query))
+            posts = Product.objects.filter(Q(title__search=search_query))
             context = {
                 'posts' : posts,
                 'query' : search_query,
