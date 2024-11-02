@@ -33,6 +33,9 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.id}"
     
+    def get_total_price(self):
+        return sum(item.quantity * item.price for item in self.item.all())
+    
     class Meta:
         verbose_name = 'سفارش'
         verbose_name_plural = 'سفارشات'
