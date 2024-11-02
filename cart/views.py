@@ -65,7 +65,8 @@ def checkout(request):
             if len(request.user.fullname) == 0:
                 request.user.fullname = f"{order_obj.first_name} {order_obj.last_name}"
                 request.user.save()
-            return redirect('index')
+            request.session['order_id'] = order_obj.id
+            return redirect('payment:payment_process')
     context.update({
         'cart' : cart,
         'form' : OrderForm(),
