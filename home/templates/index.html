@@ -50,7 +50,7 @@
                 {% for base_category in base_categories %}
                 <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
                     <!--== Start Product Category Item ==-->
-                    <a href="{% url "product" %}" class="product-category-item" data-bg-color="{{ base_category.color }}">
+                    <a href="{% url "product_filter" %}" class="product-category-item" data-bg-color="{{ base_category.color }}">
                         <img class="icon" src="{{ base_category.image.url }}" width="70" height="80" alt="Image-HasTech">
                         <h3 class="title">{{ base_category.name }}</h3>
                     </a>
