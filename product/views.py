@@ -50,30 +50,45 @@ def product_detail(request, pk):
     }
     return render(request, "product-detail.html", context)
 
+from django.db.models import Q, Avg, Case, When, FloatField
+from django.shortcuts import render
+
 def product_filter(request):
     base_categories = BaseCategory.objects.all()
-    posts = Product.objects.all().annotate(stars=Avg(Case(When(comments__publish=True, then='comments__star'),output_field=FloatField())),)
+    posts = Product.objects.all().annotate(
+        stars=Avg(Case(When(comments__publish=True, then='comments__star'), output_field=FloatField()))
+    )
     if request.method == 'POST':
-        search_query = request.POST['search_query']
-        if len(search_query) >= 1:
+        search_query = request.POST.get('search_query')
+        if search_query and len(search_query) >= 1:
             posts = Product.objects.filter(Q(title__icontains=search_query))
             context = {
-                'posts' : posts,
-                'query' : search_query,
-                'categories' : base_categories,
-                }
+                'posts': posts,
+                'query': search_query,
+                'categories': base_categories,
+            }
             return render(request, 'product-filter.html', context)
+
     if request.method == 'GET':
         search_category = request.GET.get('search_category')
-        if search_category != None:
+        category_name = request.GET.get('category_name')
+        if search_category:
             posts = Product.objects.filter(category__name__in=[search_category])
             context = {
-                'posts' : posts,
-                'categories' : base_categories,
-                }
+                'posts': posts,
+                'categories': base_categories,
+            }
             return render(request, 'product-filter.html', context)
+        elif category_name:
+            posts = Product.objects.filter(category__name__in=[category_name])
+            context = {
+                'posts': posts,
+                'categories': base_categories,
+            }
+            return render(request, 'product-filter.html', context)
+        
     context = {
-        'posts' : posts,
-        'categories' : base_categories,
+        'posts': posts,
+        'categories': base_categories,
     }
     return render(request, "product-filter.html", context)

@@ -50,10 +50,13 @@
                 {% for base_category in base_categories %}
                 <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
                     <!--== Start Product Category Item ==-->
-                    <a href="{% url "product_filter" %}" class="product-category-item" data-bg-color="{{ base_category.color }}">
-                        <img class="icon" src="{{ base_category.image.url }}" width="70" height="80" alt="Image-HasTech">
-                        <h3 class="title">{{ base_category.name }}</h3>
-                    </a>
+                    <form action="{% url "product_filter" %}" method="GET" class="product-category-item" data-bg-color="{{ base_category.color }}" style="cursor: pointer;">
+                        <input type="hidden" name="category_name" value="{{ base_category.name }}">
+                        <button style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <img class="icon" src="{{ base_category.image.url }}" width="70" height="80" alt="Image-HasTech" style="display: block;">
+                            <h3 class="title" style="margin: 0; text-align: center;">{{ base_category.name }}</h3>
+                        </button type="submit">
+                    </form>                
                     <!--== End Product Category Item ==-->
                 </div>
                 {% endfor %}
