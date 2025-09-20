@@ -30,14 +30,14 @@ class Product(models.Model):
         
         
 class ProductImage(models.Model):
-    NUMBER_BOX = {
-        '1' : 1,
-        '2' : 2,
-        '3' : 3,
-        '4' : 4,
-        '5' : 5,
-        '6' : 6,
-    }
+    NUMBER_BOX = [
+        ('1' , 1),
+        ('2' , 2),
+        ('3' , 3),
+        ('4' , 4),
+        ('5' , 5),
+        ('6' , 6),
+    ]
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images", verbose_name="محصول")
     image = models.ImageField(null=True,blank=True, verbose_name="عکس")
     number = models.CharField(max_length=2, choices=NUMBER_BOX, verbose_name="عدد عکس")
@@ -51,13 +51,14 @@ class ProductImage(models.Model):
     
 
 class Comment(models.Model):
-    STAR_BOX = {
-        '1' : 1,
-        '2' : 2,
-        '3' : 3,
-        '4' : 4,
-        '5' : 5,
-    }
+    STAR_BOX = [
+        ('1' , 1),
+        ('2' , 2),
+        ('3' , 3),
+        ('4' , 4),
+        ('5' , 5),
+        ('6' , 6),
+    ]
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments', verbose_name="محصول")
     name = models.CharField(max_length=250, verbose_name="نام")
     message = models.TextField(verbose_name="پیام")
