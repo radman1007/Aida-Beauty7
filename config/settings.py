@@ -94,14 +94,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': DJANGO_DB_NAME,
-        'USER' : DJANGO_DB_USER,
-        'PASSWORD' : DJANGO_DB_PASSWORD,
-        'HOST' : DJANGO_DB_HOST,
-        'PORT' : DJANGO_DB_PORT,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': DJANGO_DB_NAME,
+#         'USER' : DJANGO_DB_USER,
+#         'PASSWORD' : DJANGO_DB_PASSWORD,
+#         'HOST' : DJANGO_DB_HOST,
+#         'PORT' : DJANGO_DB_PORT,
+#     }
+# }
 
 
 # Password validation
